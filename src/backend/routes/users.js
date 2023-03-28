@@ -1,5 +1,39 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+let mongoose = require('mongoose');
+let User = require('../models/User');
+
+// POST de un nuevo usuario
+router.post('/', 
+  
+  (req, res) => {
+    // const errors = validationResult(req);
+    
+    // if (!errors.isEmpty()){
+    //   return res.status(400).json({errors: errors.array()})
+    // }
+
+    User.create({
+
+      username: req.body.username,
+      password: req.body.password,
+      name: req.body.name,
+      surname: req.body.surname,
+      identification: req.body.identification,
+      email: req.body.email,
+      phone_number: req.body.phone_number,
+      adress: req.body.adress,
+      birthday: req.body.birthday,
+      description: req.body.description,
+      num_dishes_sold: req.body.num_dishes_sold,
+      num_dishes_purchased: req.body.num_dishes_purchased,
+      pay: req.body.pay,
+      photo: req.body.photo,
+      rol: req.body.rol
+
+    }).then(user => res.json(user));
+  }
+);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

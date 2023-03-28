@@ -28,7 +28,8 @@ let userSchema = new Schema({
         required: true
     },
     phone_number: {
-        type: Number
+        type: Number,
+        default: null
     },
     adress: {
         type: String,
@@ -39,7 +40,8 @@ let userSchema = new Schema({
         required: true
     },
     description: {
-        type: String
+        type: String,
+        default: ""
     },
     num_dishes_sold: {
         type: Number,
@@ -55,7 +57,8 @@ let userSchema = new Schema({
         required: true
     },
     photo: {
-        type: String
+        type: String,
+        default: ""
     },
     rol: {
         type: String,
