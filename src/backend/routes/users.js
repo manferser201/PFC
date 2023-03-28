@@ -4,54 +4,31 @@ let mongoose = require('mongoose');
 const { body, validationResult } = require('express-validator');
 let User = require('../models/User');
 
-// POST de un nuevo usuario
+/* POST de un nuevo usuario */
 router.post('/', 
   
-  body('username')
-    .exists()
-    .isString(),
-  body('password')
-    .exists()
-    .isAlphanumeric()
-    .isLength( {min:8} ),
-  body('name')
-    .exists()
-    .isString(),
-  body('surname')
-    .exists()
-    .isString(),
-  body('identification')
-    .exists()
-    .isAlphanumeric(),
-  body('email')
-    .exists()
-    .isEmail(),
-  body('phone_number')
-    .optional()
-    .isLength(9),
-  body('adress')
-    .exists()
-    .isString(),
-  body('birthday')
-    .exists()
-    .isDate(),
-  body('pay')
-    .exists()
-    .isString(),
-  body('photo')
-    .optional()
-    .isString(),
-  body('rol')
-    .optional()
-    .isString(),
+  // Validaciones
+  // body('username').exists().isString(),
+  // body('password').exists(),
+  // body('name').exists().isString(),
+  // body('surname').exists().isString(),
+  // body('identification').exists(),
+  // body('email').exists().isEmail(),
+  // body('phone_number').optional(),
+  // body('adress').exists().isString(),
+  // body('birthday').exists().isDate(),
+  // body('pay').exists().isString(),
+  // body('photo').optional(),
+  // body('rol').optional(),
 
   (req, res) => {
-    const errors = validationResult(req);
+    // const errors = validationResult(req);
     
-    if (!errors.isEmpty()){
-      return res.status(400).json({errors: errors.array()})
-    }
+    // if (!errors.isEmpty()){
+    //   return res.status(400).json({errors: errors.array()})
+    // }
 
+    // Creamos el JSON de usuario
     User.create({
 
       username: req.body.username,
@@ -74,9 +51,13 @@ router.post('/',
   }
 );
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/* GET del listado de todos los usuarios registrados*/
+router.get('/', function (req, res) {
+  User.find().exec(function(err, users) {
+    if (err) res.status(500).send(err);
+    else res.status(200).json(users);
+  });
 });
+
 
 module.exports = router;
