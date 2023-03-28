@@ -9,9 +9,17 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', false); //requerido para quitar el warning
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true })
+  .then(() => console.log('connection successful'))
+  .catch((err) => console.error(err));
+
+mongoose.connection;
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
