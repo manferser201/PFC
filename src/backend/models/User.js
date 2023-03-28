@@ -64,4 +64,32 @@ let userSchema = new Schema({
     }
 });
 
+// Encriptación de la contraseña
+let bcrypt = require('bcryptjs');
+let SALT_WORK_FACTOR = 10;
+
+userSchema.pre('save', function (next) {
+    
+    let user = this;
+
+    // Se aplica una función hash a la contraseña si esta ha sido modificada o es nueva
+    if (!user.isModified('password ')) return next();
+    
+    // Genera la salt
+    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+        
+        if (err) return next(err);
+        
+        // Aplica una función hash a la contraseña usando la salt generada
+        bcrypt.hash(user.password, salt, function (err, hash) {
+            
+            if (err) return next(err);
+            
+            // sobrescribe el password escrito con el “hasheado”
+            user.password = hash;
+            next();
+        });
+    });
+});
+
 module.exports = mongoose.model('User', userSchema);
