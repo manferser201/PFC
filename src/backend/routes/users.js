@@ -59,5 +59,12 @@ router.get('/', function (req, res) {
   });
 });
 
+/* PUT para cambiar el rol de un usuario */
+router.put('/', function(req, res) {
+  User.findOneAndUpdate({'username': req.body.username}, req.body, function(err, userinfo) {
+    if (err) res.status(500).send(err);
+    else res.status(200).json(userinfo);
+  });
+});
 
 module.exports = router;
