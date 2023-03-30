@@ -36,7 +36,12 @@ router.get('/dishesList', function(req, res) {
 });
 
 /* GET de los datos del vendedor de un plato concreto */
-
+router.get('/', function(req, res) {
+    Dish.findOne({ "_id": req.body._id }).populate('agent').exec(function(err, dish){
+        if (err) res.status(500).send(err);
+        else res.status(200).json(dish.agent);
+    })
+});
 
 /* PUT de un plato concreto */
 

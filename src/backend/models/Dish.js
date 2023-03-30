@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let User = require('./User');
+const User = require('./User');
 
 let dishSchema = new Schema({
     photo: {
