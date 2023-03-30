@@ -52,6 +52,11 @@ router.put('/', function(req, res){
 });
 
 /* DELETE de un plato concreto */
-
+router.delete('/', function(req, res) {
+    Dish.findByIdAndDelete({ "_id": req.body._id }, function(err){
+        if (err) res.status(500).send(err);
+        else res.status(200).send("Plato eliminado con éxito");
+    });
+});
 
 module.exports = router;
