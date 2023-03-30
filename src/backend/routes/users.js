@@ -52,7 +52,7 @@ router.post('/',
 );
 
 /* GET del listado de todos los usuarios registrados*/
-router.get('/', function (req, res) {
+router.get('/userList', function (req, res) {
   User.find().exec(function(err, users) {
     if (err) res.status(500).send(err);
     else res.status(200).json(users);
