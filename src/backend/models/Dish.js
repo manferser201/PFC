@@ -3,7 +3,6 @@ let Schema = mongoose.Schema;
 let User = require('./User');
 
 let dishSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     photo: {
         type: String,
         required: true
