@@ -59,6 +59,14 @@ router.get('/', function (req, res) {
   });
 });
 
+/* GET de un usuario concreto */
+router.get('/', function(req, res) {
+  User.findOne({'username': req.body.username}, function(err, userinfo){
+    if (err) res.status(500).send(err);
+    else res.status(200).json(userinfo);
+  });
+});
+
 /* PUT para cambiar el rol de un usuario */
 router.put('/', function(req, res) {
   User.findOneAndUpdate({'username': req.body.username}, req.body, function(err, userinfo) {
