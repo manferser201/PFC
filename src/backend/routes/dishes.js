@@ -7,8 +7,25 @@ let Dish = require('../models/Dish');
 /* POST de un nuevo plato */
 router.post('/', 
 
+    // Validaciones
+    body('photo').exists().isURL(),
+    body('name').exists().isString(),
+    body('ingredients').exists().isString(),
+    body('num_dishes').exists().isNumeric(),
+    body('price').exists().isDecimal(),
+    body('type').exists().isString(),
+    body('adress').exists().isString(),
+    body('assessment').optional().isNumeric(),
+    body('num_ratings').optional().isNumeric(),
+    body('agent').exists().isString(),
 
     (req, res) => {
+
+        const errors = validationResult(req);
+    
+        if (!errors.isEmpty()){
+          return res.status(400).json({errors: errors.array()})
+        }
 
         Dish.create({
 
