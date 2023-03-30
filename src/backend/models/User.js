@@ -64,6 +64,14 @@ let userSchema = new Schema({
         type: String,
         enum: ['admin', 'sub'],
         default: 'sub'
+    }, 
+    assessment: {
+        type: Number,
+        default: 0
+    },
+    num_ratings: {
+        type: Number,
+        default: 0
     }
 });
 

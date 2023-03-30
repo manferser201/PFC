@@ -20,6 +20,8 @@ router.post('/',
   body('pay').exists().isString(),
   body('photo').optional().isURL(),
   body('rol').optional().isString(),
+  body('assessment').optional().isNumeric(),
+  body('num_ratings').optional().isNumeric(),
 
   (req, res) => {
     const errors = validationResult(req);
@@ -45,7 +47,9 @@ router.post('/',
       num_dishes_purchased: req.body.num_dishes_purchased,
       pay: req.body.pay,
       photo: req.body.photo,
-      rol: req.body.rol
+      rol: req.body.rol,
+      assessment: req.body.assessment,
+      num_ratings: req.body.num_ratings
 
     }).then(user => res.json(user));
   }
