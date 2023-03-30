@@ -62,8 +62,8 @@ let userSchema = new Schema({
     },
     rol: {
         type: String,
-        enum: ['admin', 'normal'],
-        default: 'normal'
+        enum: ['admin', 'sub'],
+        default: 'sub'
     }
 });
 

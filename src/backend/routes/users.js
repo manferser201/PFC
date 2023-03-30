@@ -8,25 +8,25 @@ let User = require('../models/User');
 router.post('/', 
   
   // Validaciones
-  // body('username').exists().isString(),
-  // body('password').exists(),
-  // body('name').exists().isString(),
-  // body('surname').exists().isString(),
-  // body('identification').exists(),
-  // body('email').exists().isEmail(),
-  // body('phone_number').optional(),
-  // body('adress').exists().isString(),
-  // body('birthday').exists().isDate(),
-  // body('pay').exists().isString(),
-  // body('photo').optional(),
-  // body('rol').optional(),
+  body('username').exists().isAlphanumeric(),
+  body('password', "La contraseña debe tener un mínimo de 8 caracteres").exists().isAlphanumeric().isLength({ min: 8 }),
+  body('name').exists().isString(),
+  body('surname').exists().isString(),
+  body('identification', "Debe ser un documento de identificación válido (DNI / NIE)").exists().isAlphanumeric(),
+  body('email', "Debe ser un Email").exists().isEmail(),
+  body('phone_number').optional().isLength({ min: 9, max: 9 }),
+  body('adress').exists().isString(),
+  body('birthday', "Debe ser una fecha").exists().isDate(),
+  body('pay').exists().isString(),
+  body('photo').optional().isURL(),
+  body('rol').optional().isString(),
 
   (req, res) => {
-    // const errors = validationResult(req);
+    const errors = validationResult(req);
     
-    // if (!errors.isEmpty()){
-    //   return res.status(400).json({errors: errors.array()})
-    // }
+    if (!errors.isEmpty()){
+      return res.status(400).json({errors: errors.array()})
+    }
 
     // Creamos el JSON de usuario
     User.create({
