@@ -67,4 +67,12 @@ router.put('/', function(req, res) {
   });
 });
 
+/* DELETE de un usuario concreto */
+router.delete('/', function(req, res) {
+  User.findOneAndDelete({'username': req.body.username}, function(err){
+    if (err) res.status(500).send(err);
+    else res.status(200).send("Usuario eliminado con éxito");
+  })
+});
+
 module.exports = router;
