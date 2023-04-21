@@ -87,4 +87,26 @@ router.delete('/', function(req, res) {
   })
 });
 
+
+/* Login usuario */
+router.post('/login', function(req, res, next) {
+  
+  //Compruebe si el usuario existe
+  User.findOne({ usuario: req.body.usuario }, function(err, user) {
+    if (err) res.status(500).send('¡Error comprobando el usuario!');
+    // Si el usuario existe...
+    if (user != null) {
+      user.comparePassword(req.body.password, function(err, isMatch) {
+      if (err) return next(err);
+  
+      // Si el password es correcto...
+      if (isMatch)
+        res.status(200).send({ message: 'ok'});
+      else
+        res.status(200).send({ message: 'la password nocoincide' });
+      });
+    } else res.status(401).send({ message: 'usuario no registrado'});
+  });
+});
+
 module.exports = router;
