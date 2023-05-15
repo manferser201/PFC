@@ -22,7 +22,7 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ModulesModule,
+    //ModulesModule,
     SharedModule,
     CoreModule
   ],

@@ -1,1 +1,70 @@
-<p>registration works!</p>
+<div class="container">
+    <h2 class="text-center">REGISTRO</h2>
+    <form class="register-form">
+        <!-- Nombre -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput name="nombre" id="nombre" required placeholder="Nombre">
+        </mat-form-field>
+
+        <!-- Apellidos -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>Apellidos</mat-label>
+            <input type="text" matInput name="apellidos" id="apellidos" required placeholder="Apellidos">
+        </mat-form-field>
+
+        <!-- DNI -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>DNI</mat-label>
+            <input type="text" matInput name="dni" id="dni" required placeholder="12345678X">
+            <mat-error *ngIf="dniFormControl.hasError('pattern') && !dniFormControl.hasError('required')">
+                Por favor, introduce un DNI válido
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput name="email" id="email" required placeholder="ejemplo@ejemplo.com">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Por favor, introduce un email válido
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                El Email es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Direccion -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>Dirección</mat-label>
+            <input type="text" matInput name="direccion" id="direccion" required placeholder="Avenida de la Unidad, 5">
+        </mat-form-field>
+
+        <!-- Talla -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>Talla</mat-label>
+            <mat-select>
+                <mat-option name="talla" id="talla" required></mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Club de Running -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>Club de Running</mat-label>
+            <input type="text" matInput name="running-club" id="running-club">
+        </mat-form-field>
+
+        <!-- Método de pago -->
+        <mat-form-field appearance="fill" class="register-form-field">
+            <mat-label>Método de pago</mat-label>
+            <input type="text" matInput name="metodoPago" id="metodoPago">
+        </mat-form-field>
+
+        <mat-checkbox>Acepto la política de privacidad</mat-checkbox>
+
+        <div class="text-center mt-2">
+            <button mat-raised-button color="primary" type="submit" class="my-2 rojo" texto="Enviar">Enviar</button>
+            <button mat-raised-button color="accent" id="reset" type="button" class="mx-2" texto="Reset">Reset</button>
+        </div>
+    </form>
+</div>
