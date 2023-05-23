@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { ButtonComponent } from './button/button.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
-    ButtonComponent
+    ButtonComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -13,7 +15,8 @@ import { ButtonComponent } from './button/button.component';
   ],
   exports: [
     MaterialModule,
-    ButtonComponent
+    ButtonComponent,
+    CardComponent
   ]
 })
 export class CoreModule { }
