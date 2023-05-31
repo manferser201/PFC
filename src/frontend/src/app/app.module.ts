@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,8 @@ import { CoreModule } from './core/core.module';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+
+import { HomeComponent } from './modules/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,10 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    //ModulesModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HomeComponent } from './home/home.component';
+
 import { RegistrationComponent } from './registration/registration.component';
+import { HomeComponent } from './home/home.component';
+import { MaterialModule } from '../core/material/material.module';
+import { CoreModule } from '../core/core.module';
 import { LoginComponent } from './login/login.component';
-import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
-    HomeComponent,
     RegistrationComponent,
+    HomeComponent,
     LoginComponent
   ],
   imports: [
     CommonModule,
-    CoreModule,
-    FormsModule
+    MaterialModule,
+    CoreModule
   ]
 })
 

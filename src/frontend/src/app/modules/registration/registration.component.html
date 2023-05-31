@@ -1,70 +1,124 @@
 <div class="container">
     <h2 class="text-center">REGISTRO</h2>
-    <form class="register-form">
-        <!-- Nombre -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>Nombre</mat-label>
-            <input type="text" matInput name="nombre" id="nombre" required placeholder="Nombre">
-        </mat-form-field>
+    <form>
+        
+        
+        <!-- <fieldset class="row g-3">
+            <legend>Datos de acceso</legend>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="username" class="form-label">NOMBRE DE USUARIO</label>
+                    <input type="text" class="form-control" id="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="password" class="form-label">CONTRASEÑA</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="col-md-6">
+                    <label for="password2" class="form-label">REPETIR CONTRASEÑA</label>
+                    <input type="password" class="form-control" id="password2">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="row g-3">
+            <legend>Datos personales</legend>
 
-        <!-- Apellidos -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>Apellidos</mat-label>
-            <input type="text" matInput name="apellidos" id="apellidos" required placeholder="Apellidos">
-        </mat-form-field>
 
-        <!-- DNI -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>DNI</mat-label>
-            <input type="text" matInput name="dni" id="dni" required placeholder="12345678X">
-            <mat-error *ngIf="dniFormControl.hasError('pattern') && !dniFormControl.hasError('required')">
-                Por favor, introduce un DNI válido
-            </mat-error>
-        </mat-form-field>
+            <div class="col-md-12">
+                <label for="dniNie" class="form-label">DNI/NIE</label>
+                <input type="text" class="form-control" id="dniNie">
+            </div>
 
-        <!-- Email -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput name="email" id="email" required placeholder="ejemplo@ejemplo.com">
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Por favor, introduce un email válido
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-                El Email es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
 
-        <!-- Direccion -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>Dirección</mat-label>
-            <input type="text" matInput name="direccion" id="direccion" required placeholder="Avenida de la Unidad, 5">
-        </mat-form-field>
+            <div class="col-md-5">
+                <label for="name" class="form-label">NOMBRE</label>
+                <input type="text" class="form-control" id="name">
+            </div>
 
-        <!-- Talla -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>Talla</mat-label>
-            <mat-select>
-                <mat-option name="talla" id="talla" required></mat-option>
-            </mat-select>
-        </mat-form-field>
 
-        <!-- Club de Running -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>Club de Running</mat-label>
-            <input type="text" matInput name="running-club" id="running-club">
-        </mat-form-field>
+            <div class="col-7">
+                <label for="surname" class="form-label">APELLIDOS</label>
+                <input type="text" class="form-control" id="surname">
+            </div>
 
-        <!-- Método de pago -->
-        <mat-form-field appearance="fill" class="register-form-field">
-            <mat-label>Método de pago</mat-label>
-            <input type="text" matInput name="metodoPago" id="metodoPago">
-        </mat-form-field>
 
-        <mat-checkbox>Acepto la política de privacidad</mat-checkbox>
+            <div class="col-3">
+                <label for="birthday" class="form-label">FECHA DE NACIMIENTO</label>
+                <input type="date" class="form-control" id="birthday">
+            </div>
 
-        <div class="text-center mt-2">
-            <button mat-raised-button color="primary" type="submit" class="my-2 rojo" texto="Enviar">Enviar</button>
-            <button mat-raised-button color="accent" id="reset" type="button" class="mx-2" texto="Reset">Reset</button>
-        </div>
+
+            <div class="col-md-5">
+                <label for="email" class="form-label">EMAIL</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+
+
+            <div class="col-md-4">
+                <label for="phone" class="form-label">TELEFONO</label>
+                <input type="tel" class="form-control" id="phone">
+            </div>
+
+
+            <div class="col-md-4">
+                <label for="inputZip" class="form-label">CALLE</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-1">
+                <label for="inputZip" class="form-label">Nº</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">BLOQUE</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-3">
+                <label for="inputZip" class="form-label">ESCALERA</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-1">
+                <label for="inputZip" class="form-label">PUERTA</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-1">
+                <label for="inputZip" class="form-label">LETRA</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>  
+        </fieldset>
+        <fieldset>
+            <legend>Datos de pago</legend>
+
+            <mat-tab-group>
+                <mat-tab label="Tarjeta de crédito" id="creditCard"> 
+                    <div class="row g-6">
+                        <div class="col-md-4">
+                            <label for="cardNumber">Número de tarjeta</label>     
+                            <input type="text" name="cardNumber" id="cardNumber">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cardNumber">Fecha de caducidad</label>     
+                            <input type="date" name="cardNumber" id="cardNumber">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="csv">CSV</label>     
+                            <input type="number" name="csv" id="csv">
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Bizum" id="bizum"> Content 2 </mat-tab>
+                <mat-tab label="PayPal" id="paypal"> Content 3 </mat-tab>
+              </mat-tab-group>
+              
+        </fieldset>
+
+        <mat-checkbox>Acepto la política de privacidad</mat-checkbox> -->
+
+        <!-- <div class="text-center mt-2">
+            <app-button mat-raised-button color="primary" type="submit" class="my-2 rojo" texto="Enviar" id="enviar" [disabled]="registerForm.invalid"></app-button>
+            <app-button mat-raised-button color="accent" id="reset" type="button" class="mx-2" texto="Reset" (click)="onreset()"></app-button>
+        </div> -->
     </form>
 </div>
