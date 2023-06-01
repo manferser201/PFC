@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
@@ -16,7 +18,10 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     MaterialModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 

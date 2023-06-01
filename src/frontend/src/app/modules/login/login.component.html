@@ -6,7 +6,7 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
             <input type="text" id="login" class="fadeIn second" placeholder="Nombre de usuario" formControlName="usuario">
-            <input type="text" id="password" class="fadeIn third" placeholder="Introduzca su contraseña" formControlName="password">
+            <input type="password" id="password" class="fadeIn third" placeholder="Introduzca su contraseña" formControlName="password">
             <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
 
