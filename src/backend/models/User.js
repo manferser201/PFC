@@ -28,12 +28,10 @@ let userSchema = new Schema({
         required: true
     },
     phone_number: {
-        type: Number,
-        default: null
+        type: Number
     },
     adress: {
-        type: String,
-        required: true
+        type: String
     },
     birthday: {
         type: Date,
@@ -53,8 +51,7 @@ let userSchema = new Schema({
     },
     pay: {
         type: String,
-        enum: ['PayPal', 'Visa', 'Bizum'],
-        required: true
+        enum: ['PayPal', 'Visa', 'Bizum']
     },
     photo: {
         type: String,

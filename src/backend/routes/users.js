@@ -1,8 +1,11 @@
 let express = require('express');
+const session = require('express-session');
 let router = express.Router();
 let mongoose = require('mongoose');
 const { body, validationResult } = require('express-validator');
 let User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 /* POST de un nuevo usuario */
 router.post('/', 
@@ -15,15 +18,15 @@ router.post('/',
   body('identification', "Debe ser un documento de identificación válido (DNI / NIE)").exists().isAlphanumeric(),
   body('email', "Debe ser un Email").exists().isEmail(),
   body('phone_number').optional().isLength({ min: 9, max: 9 }),
-  body('adress').exists().isString(),
+  body('adress').optional().isString(),
   body('birthday', "Debe ser una fecha").exists().isDate(),
-  body('pay').exists().isString(),
+  body('pay').optional().isString(),
   body('photo').optional().isURL(),
-  body('rol').optional().isString(),
   body('assessment').optional().isNumeric(),
   body('num_ratings').optional().isNumeric(),
 
   (req, res) => {
+    console.log("Entrando en el método de la API");
     const errors = validationResult(req);
     
     if (!errors.isEmpty()){
@@ -46,10 +49,7 @@ router.post('/',
       num_dishes_sold: req.body.num_dishes_sold,
       num_dishes_purchased: req.body.num_dishes_purchased,
       pay: req.body.pay,
-      photo: req.body.photo,
-      rol: req.body.rol,
-      assessment: req.body.assessment,
-      num_ratings: req.body.num_ratings
+      photo: req.body.photo
 
     }).then(user => res.json(user));
   }

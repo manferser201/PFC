@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +21,7 @@ import { LoginComponent } from './login/login.component';
     CoreModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    MatTabsModule
   ]
 })
 

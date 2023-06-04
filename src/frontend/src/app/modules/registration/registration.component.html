@@ -1,124 +1,147 @@
 <div class="container">
-    <h2 class="text-center">REGISTRO</h2>
-    <form>
-        
-        
-        <!-- <fieldset class="row g-3">
-            <legend>Datos de acceso</legend>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="username" class="form-label">NOMBRE DE USUARIO</label>
-                    <input type="text" class="form-control" id="username">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="password" class="form-label">CONTRASEÑA</label>
-                    <input type="password" class="form-control" id="password">
-                </div>
-                <div class="col-md-6">
-                    <label for="password2" class="form-label">REPETIR CONTRASEÑA</label>
-                    <input type="password" class="form-control" id="password2">
-                </div>
-            </div>
-        </fieldset>
+    <h2>Registro de usuario</h2>
+    <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
         <fieldset class="row g-3">
-            <legend>Datos personales</legend>
-
-
-            <div class="col-md-12">
-                <label for="dniNie" class="form-label">DNI/NIE</label>
-                <input type="text" class="form-control" id="dniNie">
-            </div>
-
-
-            <div class="col-md-5">
-                <label for="name" class="form-label">NOMBRE</label>
-                <input type="text" class="form-control" id="name">
-            </div>
-
-
-            <div class="col-7">
-                <label for="surname" class="form-label">APELLIDOS</label>
-                <input type="text" class="form-control" id="surname">
-            </div>
-
-
-            <div class="col-3">
-                <label for="birthday" class="form-label">FECHA DE NACIMIENTO</label>
-                <input type="date" class="form-control" id="birthday">
-            </div>
-
-
-            <div class="col-md-5">
-                <label for="email" class="form-label">EMAIL</label>
-                <input type="email" class="form-control" id="email">
-            </div>
-
-
-            <div class="col-md-4">
-                <label for="phone" class="form-label">TELEFONO</label>
-                <input type="tel" class="form-control" id="phone">
-            </div>
-
-
-            <div class="col-md-4">
-                <label for="inputZip" class="form-label">CALLE</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-md-1">
-                <label for="inputZip" class="form-label">Nº</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">BLOQUE</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-md-3">
-                <label for="inputZip" class="form-label">ESCALERA</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-md-1">
-                <label for="inputZip" class="form-label">PUERTA</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-md-1">
-                <label for="inputZip" class="form-label">LETRA</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>  
-        </fieldset>
-        <fieldset>
-            <legend>Datos de pago</legend>
-
-            <mat-tab-group>
-                <mat-tab label="Tarjeta de crédito" id="creditCard"> 
-                    <div class="row g-6">
-                        <div class="col-md-4">
-                            <label for="cardNumber">Número de tarjeta</label>     
-                            <input type="text" name="cardNumber" id="cardNumber">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="cardNumber">Fecha de caducidad</label>     
-                            <input type="date" name="cardNumber" id="cardNumber">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="csv">CSV</label>     
-                            <input type="number" name="csv" id="csv">
-                        </div>
+                <legend>Datos de acceso</legend>
+                
+                <div class="row">
+                    <mat-form-field class="col-md-6" appearance="fill">
+                        <mat-label>NOMBRE DE USUARIO</mat-label>
+                        <input type="text" matInput formControlName="username" id="username" required>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.get('username')!.errors" class="invalid-feedback">
+                        <mat-error *ngIf="registerForm.get('username')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </div>
-                </mat-tab>
-                <mat-tab label="Bizum" id="bizum"> Content 2 </mat-tab>
-                <mat-tab label="PayPal" id="paypal"> Content 3 </mat-tab>
-              </mat-tab-group>
-              
-        </fieldset>
+                    
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-md-6" appearance="fill">
+                        <mat-label>CONTRASEÑA</mat-label>
+                        <input type="password" matInput formControlName="password" id="password" required>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.get('password')!.errors" class="invalid-feedback">
+                        <mat-error *ngIf="registerForm.get('password')!.hasError('required')">Este campo es obligatorio</mat-error>
+                        <mat-error *ngIf="registerForm.get('password')!.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</mat-error>
+                    </div>
+                    
 
-        <mat-checkbox>Acepto la política de privacidad</mat-checkbox> -->
+                    <mat-form-field class="col-md-6" appearance="fill">
+                        <mat-label>REPETIR CONTRASEÑA</mat-label>
+                        <input type="password" matInput id="repeatPass" required>
+                    </mat-form-field>
+                    <!-- <div *ngIf="registerForm.get('repeatPass')!.errors" class="invalid-feedback">
+                        <mat-error *ngIf="registerForm.get('repeatPass')!.hasError('required')">Este campo es obligatorio</mat-error>
+                        <mat-error *ngIf="registerForm.get('repeatPass')!.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</mat-error>
+                    </div> -->
+                    
+                </div>
+            </fieldset>
+            <fieldset class="row g-3">
+                <legend>Datos personales</legend>
 
-        <!-- <div class="text-center mt-2">
-            <app-button mat-raised-button color="primary" type="submit" class="my-2 rojo" texto="Enviar" id="enviar" [disabled]="registerForm.invalid"></app-button>
-            <app-button mat-raised-button color="accent" id="reset" type="button" class="mx-2" texto="Reset" (click)="onreset()"></app-button>
-        </div> -->
+                <mat-form-field class="col-md-4" appearance="fill">
+                    <mat-label>NOMBRE</mat-label>
+                    <input type="text" matInput formControlName="name" id="name" required>
+                </mat-form-field>
+                <div *ngIf="registerForm.get('name')!.errors" class="invalid-feedback">
+                    <mat-error *ngIf="registerForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
+                </div>
+                
+                
+                <mat-form-field class="col-md-5" appearance="fill">
+                    <mat-label>APELLIDOS</mat-label>
+                    <input type="text" matInput formControlName="surname" id="surname"  required>
+                </mat-form-field>
+                <div *ngIf="registerForm.get('surname')!.errors" class="invalid-feedback">
+                    <mat-error *ngIf="registerForm.get('surname')!.hasError('required')">Este campo es obligatorio</mat-error>
+                </div>
+                
+                <mat-form-field class="col-md-3" appearance="fill">
+                    <mat-label>DNI/NIE</mat-label>
+                    <input type="text" matInput formControlName="identification" id="identification"  required>
+                </mat-form-field>
+                <div *ngIf="registerForm.get('identification')!.errors" class="invalid-feedback">
+                    <mat-error *ngIf="registerForm.get('identification')!.hasError('required')">Este campo es obligatorio</mat-error>
+                </div>
+    
+                <mat-form-field class="col-md-3" appearance="fill">
+                    <mat-label>FECHA DE NACIMIENTO</mat-label>
+                    <input type="date" matInput formControlName="birthday" id="birthday"  required>
+                </mat-form-field>
+                <div *ngIf="registerForm.get('birthday')!.errors" class="invalid-feedback">
+                    <mat-error *ngIf="registerForm.get('birthday')!.hasError('required')">Este campo es obligatorio</mat-error>
+                </div>
+                
+
+                <mat-form-field class="col-md-5" appearance="fill">
+                    <mat-label>EMAIL</mat-label>
+                    <input type="email" matInput formControlName="email" id="email"  required>
+                </mat-form-field>
+                <div *ngIf="registerForm.get('email')!.errors" class="invalid-feedback">
+                    <mat-error *ngIf="registerForm.get('email')!.hasError('required')">Este campo es obligatorio</mat-error>
+                </div>
+                
+                
+                <mat-form-field class="col-md-4" appearance="fill">
+                    <mat-label>TELEFONO</mat-label>
+                    <input type="tel" matInput name="phone_number" id="phone_number">
+                </mat-form-field>
+
+                <mat-form-field class="col-md-4" appearance="fill">
+                    <mat-label>CALLE</mat-label>
+                    <input type="tel" matInput name="direccion" id="calle">
+                </mat-form-field>
+                <mat-form-field class="col-md-1" appearance="fill">
+                    <mat-label>Nº</mat-label>
+                    <input type="tel" matInput name="direccion" id="number">
+                </mat-form-field>
+                <mat-form-field class="col-md-2" appearance="fill">
+                    <mat-label>BLOQUE</mat-label>
+                    <input type="tel" matInput name="direccion" id="bloque">
+                </mat-form-field>
+                <mat-form-field class="col-md-3" appearance="fill">
+                    <mat-label>ESCALERA</mat-label>
+                    <input type="tel" matInput name="direccion" id="escalera">
+                </mat-form-field>
+                <mat-form-field class="col-md-1" appearance="fill">
+                    <mat-label>PUERTA</mat-label>
+                    <input type="tel" matInput name="direccion" id="puerta">
+                </mat-form-field>
+                <mat-form-field class="col-md-1" appearance="fill">
+                    <mat-label>LETRA</mat-label>
+                    <input type="tel" matInput name="direccion" id="letra">
+                </mat-form-field>
+            </fieldset> 
+            <!-- <fieldset>
+                <legend>Datos de pago</legend>
+    
+                <mat-tab-group>
+                    <mat-tab label="Tarjeta de crédito" id="creditCard"> 
+                        <div class="row g-6">
+                            <div class="col-md-4">
+                                <mat-label for="cardNumber">Número de tarjeta</mat-label>     
+                                <input type="text" name="cardNumber" id="cardNumber">
+                            </div>
+                            <div class="col-md-3">
+                                <mat-label for="cardNumber">Fecha de caducidad</mat-label>     
+                                <input type="date" name="cardNumber" id="cardNumber">
+                            </div>
+                            <div class="col-md-3">
+                                <mat-label for="csv">CSV</mat-label>     
+                                <input type="number" name="csv" id="csv">
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Bizum" id="bizum"> Content 2 </mat-tab>
+                    <mat-tab label="PayPal" id="paypal"> Content 3 </mat-tab>
+                  </mat-tab-group>
+            </fieldset> -->
+    
+            <mat-checkbox>Acepto la política de privacidad</mat-checkbox>
+    
+            <div class="text-center mt-2">
+                <button mat-raised-button color="primary" type="submit" class="my-2 rojo" texto="Enviar" id="enviar" [disabled]="registerForm.invalid">Enviar</button>
+                <app-button mat-raised-button color="accent" id="reset" type="reset" class="mx-2" texto="Reset"></app-button>
+            </div>
     </form>
 </div>

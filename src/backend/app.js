@@ -5,12 +5,21 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 require('dotenv').config();
+const cors = require('cors');
 
-// Modelos
+
+app.use(cors());
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Modelos
 let userModel = require('./models/User');
 let dishModel = require('./models/Dish');
 
-// Rutas
+//Rutas
 let usersRouter = require('./routes/users');
 let dishesRouter = require('./routes/dishes');
 
@@ -21,12 +30,6 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true })
   .catch((err) => console.error(err));
 
 mongoose.connection;
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
 app.use('/dishes', dishesRouter);
