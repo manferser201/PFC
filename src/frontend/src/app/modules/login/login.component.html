@@ -1,17 +1,25 @@
-<div class="container wrapper fadeInDown">
-    <!-- <div id="formContent">
-        <div class="fadeIn first">
+<div class="container">
+    <div id="formContent">
+        <div class="">
             <img src="" alt="icono">
         </div>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-            <input type="text" id="login" class="fadeIn second" placeholder="Nombre de usuario" formControlName="usuario">
-            <input type="password" id="password" class="fadeIn third" placeholder="Introduzca su contraseña" formControlName="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <mat-form-field class="col-md-6" appearance="fill">
+                <mat-label>NOMBRE DE USUARIO</mat-label>
+                <input type="text" matInput id="username" formControlName="username" required>
+            </mat-form-field>
+            
+            <mat-form-field class="col-md-6" appearance="fill">
+                <mat-label>CONTRASEÑA</mat-label>
+                <input type="password" matInput id="password" formControlName="password" required>
+            </mat-form-field>
+            
+            <app-button texto="Iniciar Sesión"></app-button>
         </form>
 
         <div id="formFooter">
             <a href="#" class="underlineHover">Forgot Password?</a>
         </div>
-    </div> -->
+    </div>
 </div>

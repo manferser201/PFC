@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { ApiService } from './api.service';
-import {LoginI} from './login.interface';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +11,32 @@ import {LoginI} from './login.interface';
 
 export class LoginComponent implements OnInit{
 
-  loginForm = new FormGroup({
-    usuario: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  })
+  loginForm: FormGroup;
 
-  constructor(private api: ApiService) {}
-
-  ngOnInit(): void {
-    
+  constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.minLength(8), Validators.required]]
+    });
   }
 
-  onLogin(form: LoginI) {
-    this.api.loginByEmail(form);
+  login() {
+    this.http
+      .post<any>('http://localhost:5000/login', this.loginForm.value)
+      .subscribe((response) => {
+        if(response.exists) {
+          console.log(this.loginForm.value.username);
+          console.log(this.loginForm.value.password);
+
+          localStorage.setItem('username', this.loginForm.value.username);
+          localStorage.setItem('password', this.loginForm.value.password);
+        }
+      }, (error) => {
+        console.error(error)
+      });
+  }
+
+  ngOnInit() {
+    
   }
 }

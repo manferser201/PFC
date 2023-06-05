@@ -11,9 +11,9 @@ const routes: Routes = [
     path: '',
     component: SkeletonComponent,
     children: [
-      { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegistrationComponent }
+      { path: 'register', component: RegistrationComponent },
+      { path: '', redirectTo:'login', pathMatch:'full' }
     ]
   }
 ];
