@@ -11,10 +11,10 @@ const jwt = require('jsonwebtoken');
 router.post('/', 
   
   // Validaciones
-  body('username').exists().isAlphanumeric(),
+  body('username', "El nombre de usuario debe ser alfanumérico").exists().isAlphanumeric(),
   body('password', "La contraseña debe tener un mínimo de 8 caracteres").exists().isAlphanumeric().isLength({ min: 8 }),
-  body('name').exists().isString(),
-  body('surname').exists().isString(),
+  body('name', 'El campo nombre es obligatorio').exists().isString(),
+  body('surname', 'El campo apellido es obligatorio').exists().isString(),
   body('identification', "Debe ser un documento de identificación válido (DNI / NIE)").exists().isAlphanumeric(),
   body('email', "Debe ser un Email").exists().isEmail(),
   body('phone_number').optional().isLength({ min: 9, max: 9 }),
@@ -93,21 +93,23 @@ router.post('/login', function(req, res, next) {
   
   console.log('Entrando en el método de Login');
   //Compruebe si el usuario existe
-  User.findOne({ usuario: req.body.usuario }, function(err, user) {
-    if (err) res.status(500).send('¡Error comprobando el usuario!');
-    // Si el usuario existe...
-    if (user != null) {
-      user.comparePassword(req.body.password, function(err, isMatch) {
-      if (err) return next(err);
-  
-      // Si el password es correcto...
-      if (isMatch)
-        res.status(200).send({ message: 'ok'});
-      else
-        res.status(200).send({ message: 'la password nocoincide' });
-      });
-    } else res.status(401).send({ message: 'usuario no registrado'});
+  User.findOne({ username: req.body.username }, function(err, user) {
+    
+    if(err) {
+      return res.status(500).json({ error: 'Error interno del servisor' });
+    }
+
+    if(!user) {
+      return res.status(401).json({ error: 'Nombre de usuario no encontrado' });
+    }
+
+    if(user.password !== req.body.password) {
+      return res.status(401).json({ error: 'Contraseña incorrecta' }); 
+    }
+
+    return res.status(200).json({ message: 'Autenticación exisota' });
   });
+
 });
 
 module.exports = router;

@@ -28,8 +28,9 @@ export class RegistrationComponent implements OnInit{
   register() {
 
     this.http
-      .post<any>('http://localhost:5000', this.registerForm.value)
+      .post<any>('http://localhost:5000/', this.registerForm.value)
       .subscribe((response) => {
+        console.log(response);
         this.router.navigate(['/login']);
       }, (error) => {
         console.error(error)

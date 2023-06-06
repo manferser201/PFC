@@ -24,19 +24,15 @@ export class LoginComponent implements OnInit{
     this.http
       .post<any>('http://localhost:5000/login', this.loginForm.value)
       .subscribe((response) => {
-        if(response.exists) {
-          console.log(this.loginForm.value.username);
-          console.log(this.loginForm.value.password);
-
-          localStorage.setItem('username', this.loginForm.value.username);
-          localStorage.setItem('password', this.loginForm.value.password);
+        if(response.message == 'Autenticación exisota') {
+          sessionStorage.setItem('username', this.loginForm.value.username);
+          sessionStorage.setItem('password', this.loginForm.value.password);
         }
       }, (error) => {
         console.error(error)
       });
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
+
 }
