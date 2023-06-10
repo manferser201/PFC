@@ -1,7 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 const User = require('./User');
-const Ingredient = require('./Ingredient');
 
 let dishSchema = new Schema({
     photo: {
@@ -13,8 +12,7 @@ let dishSchema = new Schema({
         required: true
     },
     ingredients: [{
-        type: Schema.ObjectId,
-        ref: Ingredient,
+        type: String,
         required: true
     }],
     num_dishes: {
@@ -33,6 +31,9 @@ let dishSchema = new Schema({
     adress: {
         type: String,
         required: true
+    },
+    description: {
+        type: String
     },
     assessment: {
         type: Number,

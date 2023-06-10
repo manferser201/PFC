@@ -8,19 +8,21 @@ let Dish = require('../models/Dish');
 router.post('/', 
 
     // Validaciones
-    body('photo').exists().isURL(),
+    body('photo').exists().isString(),
     body('name').exists().isString(),
     body('ingredients').exists().isString(),
     body('num_dishes').exists().isNumeric(),
     body('price').exists().isDecimal(),
     body('type').exists().isString(),
     body('adress').exists().isString(),
+    body('description').optional().isString(),
     body('assessment').optional().isNumeric(),
     body('num_ratings').optional().isNumeric(),
     body('agent').exists().isString(),
 
     (req, res) => {
 
+        console.log("Entrando en el método post de platos");
         const errors = validationResult(req);
     
         if (!errors.isEmpty()){
@@ -36,6 +38,7 @@ router.post('/',
             price: req.body.price,
             type: req.body.type,
             adress: req.body.adress,
+            description: req.body.description,
             assessment: req.body.assessment,
             num_ratings: req.body.num_ratings,
             agent: req.body.agent

@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit{
       .subscribe((response) => {
         if(response.message == 'Autenticación exisota') {
           sessionStorage.setItem('username', this.loginForm.value.username);
-          sessionStorage.setItem('password', this.loginForm.value.password);
         }
       }, (error) => {
         console.error(error)

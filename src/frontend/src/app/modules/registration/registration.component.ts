@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss']
 })
 
-export class RegistrationComponent implements OnInit{
+export class RegistrationComponent{
 
   registerForm: FormGroup;
 
@@ -21,7 +21,8 @@ export class RegistrationComponent implements OnInit{
       surname: ['', Validators.required],
       identification: ['', Validators.required],
       birthday: ['', [Validators.required]],
-      email: ['', [Validators.email, Validators.required]]
+      email: ['', [Validators.email, Validators.required]],
+      
     });
   }
 
@@ -37,5 +38,4 @@ export class RegistrationComponent implements OnInit{
       });
   }
 
-  ngOnInit() { }
 }

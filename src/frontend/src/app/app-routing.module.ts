@@ -5,6 +5,7 @@ import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { HomeComponent } from './modules/home/home.component';
 import { RegistrationComponent } from './modules/registration/registration.component';
 import { LoginComponent } from './modules/login/login.component';
+import { PostComponent } from './modules/post/post.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,9 @@ const routes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegistrationComponent },
-      { path: '', redirectTo:'login', pathMatch:'full' }
+      { path: '', redirectTo:'login', pathMatch:'full' },
+      { path: 'post', component: PostComponent }
+
     ]
   }
 ];

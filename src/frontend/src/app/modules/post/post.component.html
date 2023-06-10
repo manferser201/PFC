@@ -1,0 +1,74 @@
+<div class="container">
+    <h1>REGISTRO DE PLATOS</h1>
+    <form [formGroup]="registerDishForm" novalidate>
+        <div class="row">
+            <div class="col-6">
+                <mat-label for="photo">FOTO</mat-label>
+                <input type="file" id="photo" formControlName="photo" accept="image/png, image/jpeg" required>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <mat-form-field appearance="fill">
+                        <mat-label for="inputEmail3">NOMBRE</mat-label>
+                        <input type="text" matInput id="dishName" formControlName="name" required>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="row">
+                    <mat-form-field appearance="fill">
+                        <mat-label for="num_dishes">Nº DE PLATOS</mat-label>
+                            <input type="number" matInput id="num_dishes" formControlName="num_dishes" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="fill">
+                        <mat-label for="adress">DIRECCION</mat-label>
+                            <input type="text" matInput id="adress" formControlName="adress" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="fill">
+                        <mat-label for="type">TIPO DE PLATO</mat-label>
+                            <input type="text" matInput id="type" formControlName="type" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="fill">
+                        <mat-label for="ingredients">INGREDIENTES</mat-label>
+                            <input type="text" matInput id="ingredients" formControlName="ingredients" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div class="row">
+                    <mat-form-field appearance="fill">
+                        <mat-label for="price">PRECIO</mat-label>
+                            <input type="number" matInput id="price" formControlName="price" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label for="description">DESCRIPCION DEL PLATO</mat-label>
+                <textarea matInput id="description" formControlName="description" rows="5"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 botones">
+                <app-button color="primary" texto="VOLVER" (click)="onReset()"></app-button>
+            </div>
+            <div class="col-lg-6 botones">
+                <app-button color="accent" texto="PUBLICAR" (click)="registerDish()"></app-button>
+            </div>
+            
+            
+        </div>
+    </form>
+</div>
