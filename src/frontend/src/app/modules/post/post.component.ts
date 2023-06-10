@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -27,10 +27,30 @@ export class PostComponent {
     });
   }
 
+  obtenerUsuario() {
+    console.log("Entrando en el método para obtener el usuario")
+    
+    let options = {
+      headers: new HttpHeaders({
+        'conten-type': 'application/json'
+      }),
+      body: {
+        username: sessionStorage.getItem('username')
+      }
+    }
+
+    this.http
+    .get<any>('http://localhost:5000/', options)
+    .subscribe((response) => {
+      sessionStorage.setItem('id', response._id);
+    });
+  }
+
   registerDish() {
 
     console.log('url foto', this.registerDishForm.value.photo);
     console.log('datos', this.registerDishForm.value);
+    
     this.http
       .post<any>('http://localhost:5000/dishes/', this.registerDishForm.value)
       .subscribe((response) => {
@@ -42,26 +62,20 @@ export class PostComponent {
   }
 
   onReset(){
-    console.log(this.userData);
+    console.log(this.registerDishForm.value.photo);
   }
 
-  obtenerUsuario() {
-    console.log("Entrando en el método para obtener el usuario")
-    
-    let datosUsuario: string;
-    
-    this.http
-    .get<any>('http://localhost:5000/userList')
-    .subscribe((response) => {
-      for (let index = 0; index < response.length; index++) {
-        if(response[index].username == sessionStorage.getItem("username")){
-          sessionStorage.setItem('id', response[index]._id);
-        }
-      }
-    });
+  urlFoto(event: any) {
+    const file= event.target.files[0];
+
+    console.log(file);
+
+    if (file) {
+      console.log("ENTRANDO EN EL IF PARA SUBIR LA IMAGEN")
+      this.http.post('PFC/src/frontend/src/assets/image/', file);
+    }
+
+    console.log("IMAGEN SUBIDA");
   }
 
-  urlFoto() {
-    
-  }
 }

@@ -49,9 +49,9 @@ router.post('/',
 
 /* GET de todos los platos */
 router.get('/dishesList', function(req, res) {
-    Dish.find().exec(function(err, dishInfo){
+    Dish.find().exec(function(err, dishes){
         if (err) res.status(500).send(err);
-        else res.status(200).json(dishInfo);
+        else res.status(200).json(dishes);
     })
 });
 

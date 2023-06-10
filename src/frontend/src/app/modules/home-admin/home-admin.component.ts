@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-
 import { usersListI } from './users.interface';
 
 @Component({
@@ -24,8 +22,6 @@ export class HomeAdminComponent implements OnInit{
     .subscribe((response) => {
       this.users = response;
     });
-
-    console.log('Listado de usuarios de la bd: ', this.users);
   }
 
   deleteUser(usernameDelete: string) {
@@ -33,7 +29,7 @@ export class HomeAdminComponent implements OnInit{
     let res = window.confirm(`¿ESTÁS SEGUR@ DE QUE QUIERE ELIMINAR AL USUARIO ${usernameDelete} DE LA APLICACIÓN?`);
 
     if(res === true){
-      let options = {
+      const options = {
         headers: new HttpHeaders({
           'conten-type': 'application/json'
         }),
