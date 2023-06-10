@@ -9,13 +9,15 @@ import { MaterialModule } from '../core/material/material.module';
 import { CoreModule } from '../core/core.module';
 import { LoginComponent } from './login/login.component';
 import { PostComponent } from './post/post.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
 
 @NgModule({
   declarations: [
     RegistrationComponent,
     HomeComponent,
     LoginComponent,
-    PostComponent
+    PostComponent,
+    HomeAdminComponent
   ],
   imports: [
     CommonModule,
