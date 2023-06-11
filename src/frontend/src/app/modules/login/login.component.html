@@ -8,18 +8,22 @@
             <mat-form-field class="col-md-6" appearance="fill">
                 <mat-label>NOMBRE DE USUARIO</mat-label>
                 <input type="text" matInput id="username" formControlName="username" required>
+                <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
             
             <mat-form-field class="col-md-6" appearance="fill">
                 <mat-label>CONTRASEÑA</mat-label>
-                <input type="password" matInput id="password" formControlName="password" required>
+                <input [type]="hide ? 'password' : 'text'" matInput id="password" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
             
             <app-button texto="Iniciar Sesión"></app-button>
         </form>
 
         <div id="formFooter">
-            <a href="#" class="underlineHover">Forgot Password?</a>
+            <h3>¿AÚN NO ESTÁS REGISTRADO? <a (click)="register()">PULSE AQUÍ</a></h3>
         </div>
     </div>
 </div>

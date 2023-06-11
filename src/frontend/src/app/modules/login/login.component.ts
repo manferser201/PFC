@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit{
 
   loginForm: FormGroup;
   apiRoot = 'http://localhost:5000';
+  hide = true;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.loginForm = this.fb.group({
@@ -31,6 +32,10 @@ export class LoginComponent implements OnInit{
       }, (error) => {
         console.error(error)
       });
+  }
+
+  register(){
+    this.router.navigate(['/register']);
   }
 
   ngOnInit() {}
