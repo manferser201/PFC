@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
-
-h2 {
-    font-family: 'Racing Sans One', cursive;
-    font-size: 2.5em;
+h1 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 3em;
     text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 form {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
 
     input {
         padding-left: 1%;
@@ -16,8 +15,8 @@ form {
 
     fieldset {
         margin: 1%;
-        border: 1px solid #F1F1F1;
-        background-color: #F1F1F1;
+        border: 1px solid white;
+        background-color: #c6c6c6;
         border-radius: 20px;
         padding-left: 2%;
         padding-bottom: 1%;
@@ -25,22 +24,16 @@ form {
 
         legend {
             padding-bottom: 1%;
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            font-weight: bold;
         }
     }
-}
 
-.tab-conten {
-    padding-top: 1%;
-}
+    mat-tab-group {
+        background-color: primary;
+    }
 
-.register-form {
-    min-width: 150px;
-    // max-width: 500px;
-    width: 75%;
-    margin: 0 auto;
-}
-
-.register-form-field {
-    width: 100%;
-
+    .tab-content {
+        padding-top: 1%;
+    }
 }
