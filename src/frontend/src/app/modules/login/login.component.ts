@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
   loginForm: FormGroup;
+  apiRoot = 'http://localhost:5000';
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.loginForm = this.fb.group({
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit{
 
   login() {
     this.http
-      .post<any>('http://localhost:5000/login', this.loginForm.value)
+      .post<any>(`${this.apiRoot}/login`, this.loginForm.value)
       .subscribe((response) => {
         if(response.message == 'Autenticación exisota') {
           sessionStorage.setItem('username', this.loginForm.value.username);

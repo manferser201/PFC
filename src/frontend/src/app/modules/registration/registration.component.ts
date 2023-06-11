@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class RegistrationComponent{
 
   registerForm: FormGroup;
+  apiRoot = 'http://localhost:5000';
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerForm = this.fb.group({
@@ -29,7 +30,7 @@ export class RegistrationComponent{
   register() {
 
     this.http
-      .post<any>('http://localhost:5000/', this.registerForm.value)
+      .post<any>(this.apiRoot, this.registerForm.value)
       .subscribe((response) => {
         console.log(response);
         this.router.navigate(['/login']);

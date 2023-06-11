@@ -13,12 +13,13 @@ import { usersListI } from './users.interface';
 export class HomeAdminComponent implements OnInit{
 
   users: usersListI[] = [];
+  apiRoot = 'http://localhost:5000';
 
   constructor(private router: Router, private http: HttpClient){}
   
   ngOnInit(): void {
     this.http
-    .get<any>('http://localhost:5000/userList')
+    .get<any>(`${this.apiRoot}/userList`)
     .subscribe((response) => {
       this.users = response;
     });
@@ -39,7 +40,7 @@ export class HomeAdminComponent implements OnInit{
       }
   
       this.http
-      .delete<usersListI>('http://localhost:5000/', options)
+      .delete<usersListI>(this.apiRoot, options)
       .subscribe((response) => {
         window.location.reload();
         console.log(response);

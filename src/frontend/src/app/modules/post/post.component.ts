@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class PostComponent {
   registerDishForm: FormGroup;
   userData = sessionStorage.getItem('id');
+  apiRoot = 'http://localhost:5000';
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerDishForm = this.fb.group({
@@ -40,7 +41,7 @@ export class PostComponent {
     }
 
     this.http
-    .get<any>('http://localhost:5000/', options)
+    .get<any>(this.apiRoot, options)
     .subscribe((response) => {
       sessionStorage.setItem('id', response._id);
     });
@@ -52,7 +53,7 @@ export class PostComponent {
     console.log('datos', this.registerDishForm.value);
     
     this.http
-      .post<any>('http://localhost:5000/dishes/', this.registerDishForm.value)
+      .post<any>(`${this.apiRoot}/dishes`, this.registerDishForm.value)
       .subscribe((response) => {
         console.log(response);
         this.router.navigate(['/']);

@@ -13,12 +13,13 @@ import { dishesList } from './dishesList.interface';
 export class HomeComponent implements OnInit{
 
   dishes: dishesList[] = [];
-
+  apiRoot = 'http://localhost:5000';
+  
   constructor(private router: Router, private http: HttpClient) {}
   
   ngOnInit(): void {
     this.http
-    .get<any>('http://localhost:5000/dishes/dishesList')
+    .get<any>(`${this.apiRoot}/dishes/dishesList`)
     .subscribe((response) => {
       console.log(response);
       this.dishes = response;
