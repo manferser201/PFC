@@ -13,6 +13,7 @@ export class RegistrationComponent{
 
   registerForm: FormGroup;
   apiRoot = 'http://localhost:5000';
+  hide = true;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerForm = this.fb.group({
