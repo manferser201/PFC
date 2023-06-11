@@ -10,8 +10,8 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src/frontend/src",
+      "root": "src/frontend/",
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
