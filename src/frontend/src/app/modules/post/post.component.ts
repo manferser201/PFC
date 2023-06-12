@@ -74,14 +74,18 @@ export class PostComponent {
         }.bind(this)
         
         // Sube la imagen al servidor
-        const form = new FormData();
-
-        form.append('name', file.name);
-        form.append('file', file, 'form-data');
-
-        console.log("Crea el formulario que le vamos a pasar: ", form);
-
-        this.http.post(`${this.apiRoot}/images/upload`, form)
+        const options = {
+          headers: new HttpHeaders({
+            'conten-type': 'application/json'
+          }),
+          body: {
+            name: file.name,
+            file: file
+          }
+        }
+    
+        this.http
+        .post(`${this.apiRoot}/images/upload`, options)
         .subscribe((response) => {
           this.file = response;
         })

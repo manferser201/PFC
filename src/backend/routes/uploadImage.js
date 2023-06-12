@@ -10,14 +10,14 @@ const uploader = multer({
 router.post('/upload', uploader, (req, res) => {
     console.log('Entrando en el método para hacer el upload de las imagenes');
 
-    const { body, file } = req;
+    const { body } = req;
 
-    if(file && body) {
+    if(body) {
         console.log("Entrando en el condicional");
 
         Image.create({
             fileName: req.body.name,
-            fileUrl: `https://pfc-production.up.railway.app/${req.file.filename}`
+            fileUrl: `https://pfc-production.up.railway.app/${req.body.file.filename}`
 
         }).then(image => res.json(image));
     }
