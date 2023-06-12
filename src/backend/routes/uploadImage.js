@@ -21,6 +21,13 @@ router.post('/upload', uploader, (req, res) => {
 
         }).then(image => res.json(image));
     }
-})
+});
+
+router.get('/', (req, res) => {
+    Image.find().exec(function(err, images) {
+        if (err) res.status(500).send(err);
+        else res.status(200).json(images);
+      });
+});
 
 module.exports = router;
