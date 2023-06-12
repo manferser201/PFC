@@ -1,7 +1,8 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -9,10 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./post.component.scss']
 })
 
-export class PostComponent {
+export class PostComponent implements OnInit{
   registerDishForm: FormGroup;
-  userData = sessionStorage.getItem('id');
   apiRoot = 'http://localhost:5000';
+  file: any;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerDishForm = this.fb.group({
@@ -24,11 +25,11 @@ export class PostComponent {
       price: ['', [Validators.required]],
       ingredients: ['', Validators.required],
       description: [''],
-      agent: this.userData
+      agent: sessionStorage.getItem('id')
     });
   }
-
-  obtenerUsuario() {
+  
+  ngOnInit(): void {
     console.log("Entrando en el método para obtener el usuario")
     
     let options = {
@@ -40,17 +41,19 @@ export class PostComponent {
       }
     }
 
+    console.log(options);
+
     this.http
     .get<any>(this.apiRoot, options)
     .subscribe((response) => {
-      sessionStorage.setItem('id', response._id);
+      console.log(response);
+      // sessionStorage.setItem('id', response._id);
     });
   }
 
   registerDish() {
 
-    console.log('url foto', this.registerDishForm.value.photo);
-    console.log('datos', this.registerDishForm.value);
+    this.registerDishForm.value.photo = this.file.fileUrl;
     
     this.http
       .post<any>(`${this.apiRoot}/dishes`, this.registerDishForm.value)
@@ -67,16 +70,39 @@ export class PostComponent {
   }
 
   urlFoto(event: any) {
-    const file= event.target.files[0];
+    
+    if(event.target.files && event.target.files.length > 0) {
+      
+      const file= event.target.files[0];
+      
+      if (file.type.includes("image")) {
+        console.log("ENTRANDO EN EL IF PARA SUBIR LA IMAGEN")
+        
+        // Muestra la imagen cargada en el HTML
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
 
-    console.log(file);
+        reader.onload = function load(this: any) {
+          
+        }.bind(this)
+  
+        // this.file = file;
+        
+        // Sube la imagen al servidor
+        const form = new FormData();
 
-    if (file) {
-      console.log("ENTRANDO EN EL IF PARA SUBIR LA IMAGEN")
-      this.http.post('PFC/src/frontend/src/assets/image/', file);
+        form.append('name', file.name);
+        form.append('file', file, 'form-data');
+
+        this.http.post(`${this.apiRoot}/images/upload`, form)
+        .subscribe((response) => {
+          this.file = response;
+        })
+      } else {
+        console.error("THERE WAS AN ERROR")
+      }
+
     }
-
-    console.log("IMAGEN SUBIDA");
   }
 
 }

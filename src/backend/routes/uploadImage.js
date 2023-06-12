@@ -1,0 +1,26 @@
+const router = require('express').Router();
+const Image = require('../models/Image');
+const storage = require('../multer');
+const multer = require('multer');
+
+const uploader = multer({
+    storage
+}).single('file')
+
+router.post('/upload', uploader, (req, res) => {
+    console.log('Entrando en el método para hacer el upload de las imagenes');
+
+    const { body, file } = req;
+
+    if(file && body) {
+        console.log("Entrando en el condicional");
+
+        Image.create({
+            fileName: req.body.name,
+            fileUrl: `http://localhost:5000/${req.file.filename}`
+
+        }).then(image => res.json(image));
+    }
+})
+
+module.exports = router;

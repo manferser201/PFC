@@ -13,15 +13,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'backend/upload')));
 
 //Modelos
 let userModel = require('./models/User');
 let dishModel = require('./models/Dish');
+let imageModel = require('./models/Image');
 
 //Rutas
 let usersRouter = require('./routes/users');
 let dishesRouter = require('./routes/dishes');
+let imagesRouter = require('./routes/uploadImage');
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false); //requerido para quitar el warning
@@ -33,6 +35,7 @@ mongoose.connection;
 
 app.use('/', usersRouter);
 app.use('/dishes', dishesRouter);
+app.use('/images', imagesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,5 +52,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//Static files
+
 
 module.exports = app;
