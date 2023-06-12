@@ -51,7 +51,7 @@ export class PostComponent {
   }
 
   onReset(){
-    
+
   }
 
   urlFoto(event: any) {
@@ -59,6 +59,8 @@ export class PostComponent {
     if(event.target.files && event.target.files.length > 0) {
       
       const file= event.target.files[0];
+
+      console.log("archivo:", file);
       
       if (file.type.includes("image")) {
         console.log("ENTRANDO EN EL IF PARA SUBIR LA IMAGEN")
@@ -76,6 +78,8 @@ export class PostComponent {
 
         form.append('name', file.name);
         form.append('file', file, 'form-data');
+
+        console.log("Crea el formulario que le vamos a pasar: ", form);
 
         this.http.post(`${this.apiRoot}/images/upload`, form)
         .subscribe((response) => {
