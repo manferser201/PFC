@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit{
 
   dishes: dishesList[] = [];
   images = [];
-  apiRoot = 'http://localhost:5000';
+  apiRoot = 'pfc-production.up.railway.app:5000';
   
   constructor(private router: Router, private http: HttpClient) {}
   

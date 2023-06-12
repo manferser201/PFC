@@ -38,7 +38,24 @@ export class PostComponent {
       .get<any>(`${this.apiRoot}/userList`)
       .subscribe((response) => {
         this.users = response;
-    });
+      });
+
+      // const options = {
+      //   headers: new HttpHeaders({
+      //     'conten-type': 'application/json'
+      //   }),
+      //   body: {
+      //     username: sessionStorage.getItem('username')
+      //   }
+      // };
+    
+      // console.log("options", options);
+
+      // this.http
+      // .get<any>(`${this.apiRoot}/`, options)
+      // .subscribe((response) => {
+      //   console.log("Respuesta servidor get username: ", response);
+      // });
 
     }else {
       this.router.navigate(['/login']);
