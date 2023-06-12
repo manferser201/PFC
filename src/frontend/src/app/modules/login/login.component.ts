@@ -29,7 +29,13 @@ export class LoginComponent implements OnInit{
         if(response.message == 'Autenticación exisota') {
           sessionStorage.setItem('username', this.loginForm.value.username);
           sessionStorage.setItem('id', response.id);
-          this.router.navigate(['/']);
+          
+          if (response.rol == "admin") {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/']);
+          }
+
         }
       }, (error) => {
         console.error(error)

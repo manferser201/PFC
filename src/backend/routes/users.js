@@ -12,7 +12,7 @@ router.post('/',
   
   // Validaciones
   body('username', "El nombre de usuario debe ser alfanumérico").exists().isAlphanumeric(),
-  body('password', "La contraseña debe tener un mínimo de 8 caracteres").exists().isAlphanumeric().isLength({ min: 8 }),
+  body('password', "La contraseña debe tener un mínimo de 8 caracteres").exists().isString().isLength({ min: 8 }),
   body('name', 'El campo nombre es obligatorio').exists().isString(),
   body('surname', 'El campo apellido es obligatorio').exists().isString(),
   body('identification', "Debe ser un documento de identificación válido (DNI / NIE)").exists().isAlphanumeric(),
@@ -107,7 +107,7 @@ router.post('/login', function(req, res, next) {
       return res.status(401).json({ error: 'Contraseña incorrecta' }); 
     }
 
-    return res.status(200).json({ message: 'Autenticación exisota' });
+    return res.status(200).json({ message: 'Autenticación exisota', id: user._id, rol: user.rol });
   });
 
 });
