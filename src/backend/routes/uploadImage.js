@@ -17,7 +17,7 @@ router.post('/upload', uploader, (req, res) => {
 
         Image.create({
             fileName: req.body.name,
-            fileUrl: `https://pfc-production.up.railway.app/${req.body.file.filename}`
+            fileUrl: `https://pfc-production.up.railway.app/${req.body.name}`
 
         }).then(image => res.json(image));
     }
