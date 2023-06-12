@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class RegistrationComponent{
 
   registerForm: FormGroup;
-  apiRoot = 'http://localhost:5000';
+  apiRoot = 'https://pfc-production.up.railway.app';
   hide = true;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {

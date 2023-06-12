@@ -13,9 +13,8 @@ import { usersI } from './users.interface';
 
 export class PostComponent {
   registerDishForm: FormGroup;
-  apiRoot = 'http://localhost:5000';
+  apiRoot = 'https://pfc-production.up.railway.app';
   file: any;
-  users: usersI[] = [];
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerDishForm = this.fb.group({
@@ -33,33 +32,6 @@ export class PostComponent {
   
   ngOnInit(): void {
     
-    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null){
-      this.http
-      .get<any>(`${this.apiRoot}/userList`)
-      .subscribe((response) => {
-        this.users = response;
-      });
-
-      // const options = {
-      //   headers: new HttpHeaders({
-      //     'conten-type': 'application/json'
-      //   }),
-      //   body: {
-      //     username: sessionStorage.getItem('username')
-      //   }
-      // };
-    
-      // console.log("options", options);
-
-      // this.http
-      // .get<any>(`${this.apiRoot}/`, options)
-      // .subscribe((response) => {
-      //   console.log("Respuesta servidor get username: ", response);
-      // });
-
-    }else {
-      this.router.navigate(['/login']);
-    }
   }
 
   registerDish() {
@@ -79,7 +51,7 @@ export class PostComponent {
   }
 
   onReset(){
-    console.log(this.registerDishForm.value.photo);
+    
   }
 
   urlFoto(event: any) {

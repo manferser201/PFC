@@ -13,7 +13,7 @@ import { usersListI } from './usersList.interface';
 export class HomeAdminComponent implements OnInit{
 
   users: usersListI[] = [];
-  apiRoot = 'pfc-production.up.railway.app:5000';
+  apiRoot = 'https://pfc-production.up.railway.app';
 
   constructor(private router: Router, private http: HttpClient){}
   
@@ -21,7 +21,7 @@ export class HomeAdminComponent implements OnInit{
     
     if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null){
       this.http
-      .get<any>(`${this.apiRoot}/userList`)
+      .get<any>(this.apiRoot)
       .subscribe((response) => {
         this.users = response;
       });
