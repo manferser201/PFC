@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { usersListI } from './users.interface';
+import { usersListI } from './usersList.interface';
 
 @Component({
   selector: 'app-home-admin',
@@ -18,11 +18,16 @@ export class HomeAdminComponent implements OnInit{
   constructor(private router: Router, private http: HttpClient){}
   
   ngOnInit(): void {
-    this.http
-    .get<any>(`${this.apiRoot}/userList`)
-    .subscribe((response) => {
-      this.users = response;
-    });
+    
+    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null){
+      this.http
+      .get<any>(`${this.apiRoot}/userList`)
+      .subscribe((response) => {
+        this.users = response;
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   deleteUser(usernameDelete: string) {

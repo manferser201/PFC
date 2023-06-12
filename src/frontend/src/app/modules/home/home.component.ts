@@ -13,17 +13,33 @@ import { dishesList } from './dishesList.interface';
 export class HomeComponent implements OnInit{
 
   dishes: dishesList[] = [];
+  images = [];
   apiRoot = 'http://localhost:5000';
   
   constructor(private router: Router, private http: HttpClient) {}
   
   ngOnInit(): void {
-    this.http
-    .get<any>(`${this.apiRoot}/dishes/dishesList`)
-    .subscribe((response) => {
-      console.log(response);
-      this.dishes = response;
-    });
-  }
 
+    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null){
+      
+      // Obtenemos el listado de todos lo platos que existen
+      this.http
+      .get<any>(`${this.apiRoot}/dishes/dishesList`)
+      .subscribe((response) => {
+        console.log(response);
+        this.dishes = response;
+      });
+
+      // Obtenemos el listado de todas las imágenes que existen
+      this.http
+      .get<any>(`${this.apiRoot}/images`)
+      .subscribe((response) => {
+        console.log(response);
+        this.images = response;
+      });
+
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 }

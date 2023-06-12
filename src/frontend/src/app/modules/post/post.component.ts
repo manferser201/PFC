@@ -2,7 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+
+import { usersI } from './users.interface';
 
 @Component({
   selector: 'app-post',
@@ -10,10 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./post.component.scss']
 })
 
-export class PostComponent implements OnInit{
+export class PostComponent {
   registerDishForm: FormGroup;
   apiRoot = 'http://localhost:5000';
   file: any;
+  users: usersI[] = [];
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerDishForm = this.fb.group({
@@ -30,31 +32,25 @@ export class PostComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    console.log("Entrando en el método para obtener el usuario")
     
-    let options = {
-      headers: new HttpHeaders({
-        'conten-type': 'application/json'
-      }),
-      body: {
-        username: sessionStorage.getItem('username')
-      }
-    }
-
-    console.log(options);
-
-    this.http
-    .get<any>(this.apiRoot, options)
-    .subscribe((response) => {
-      console.log(response);
-      // sessionStorage.setItem('id', response._id);
+    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null){
+      this.http
+      .get<any>(`${this.apiRoot}/userList`)
+      .subscribe((response) => {
+        this.users = response;
     });
+
+    }else {
+      this.router.navigate(['/login']);
+    }
   }
 
   registerDish() {
 
+    // Modificamos el valor por la nueva ruta obtenida del servidor
     this.registerDishForm.value.photo = this.file.fileUrl;
-    
+
+    // Mandamos los datos al servidor mediante el método post
     this.http
       .post<any>(`${this.apiRoot}/dishes`, this.registerDishForm.value)
       .subscribe((response) => {
@@ -85,8 +81,6 @@ export class PostComponent implements OnInit{
         reader.onload = function load(this: any) {
           
         }.bind(this)
-  
-        // this.file = file;
         
         // Sube la imagen al servidor
         const form = new FormData();

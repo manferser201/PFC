@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit{
       .subscribe((response) => {
         if(response.message == 'Autenticación exisota') {
           sessionStorage.setItem('username', this.loginForm.value.username);
+          sessionStorage.setItem('id', response.id);
+          this.router.navigate(['/']);
         }
       }, (error) => {
         console.error(error)
