@@ -1,17 +1,10 @@
 const router = require('express').Router();
-const storage = require('../controller/multer');
+const storage = require('../multer');
 const multer = require('multer');
-
-const controllerMulter = require('../controller/multer');
 
 const uploader = multer({
     storage
 }).single('file')
-
-router.post('/', uploader, 
-
-    controllerMulter.uploadFile
-);
 
 router.post('/upload', uploader, (req, res) => {
     console.log('Entrando en el método para hacer el upload de las imagenes');
