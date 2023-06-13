@@ -55,5 +55,6 @@ app.use(function(err, req, res, next) {
 
 //Static files
 console.log(path.join(__dirname, '../uploads'));
+console.log(__dirname);
 
 module.exports = app;
