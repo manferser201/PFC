@@ -20,3 +20,5 @@ exports.uploadFile = (req, res) => {
 
     res.send({message: 'Imagen subida'})
 }
+
+module.exports = storage;
