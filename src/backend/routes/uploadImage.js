@@ -8,10 +8,10 @@ const uploader = multer({
     storage: storage
 }).single('file')
 
-router.post('/',
-    multercontrollerMulter.upload,
-    multercontrollerMulter.uplooadFile
-);
+router.post('/', (req, res) => {
+    multercontrollerMulter.upload
+    res.status(200).json({mensage: "Imagen subida con exito"});
+});
 
 // router.post('/upload', uploader, (req, res) => {
 //     console.log('Entrando en el método para hacer el upload de las imagenes');
