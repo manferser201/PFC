@@ -16,14 +16,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../uploads')));
 
 //Modelos
-let userModel = require('./models/User');
-let dishModel = require('./models/Dish');
-let imageModel = require('./models/Image');
+let userModel = require('../models/User');
+let dishModel = require('../models/Dish');
+let imageModel = require('../models/Image');
 
 //Rutas
-let usersRouter = require('./routes/users');
-let dishesRouter = require('./routes/dishes');
-let imagesRouter = require('./routes/uploadImage');
+let usersRouter = require('../routes/users');
+let dishesRouter = require('../routes/dishes');
+let imagesRouter = require('../routes/uploadImage');
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false); //requerido para quitar el warning
@@ -54,6 +54,6 @@ app.use(function(err, req, res, next) {
 });
 
 //Static files
-console.log(path.join(__dirname, '/uploads'));
+console.log(path.join(__dirname, '../uploads'));
 
 module.exports = app;
