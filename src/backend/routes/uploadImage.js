@@ -5,7 +5,7 @@ const multer = require('multer');
 const controllerMulter = require('../controller/multer');
 
 const uploader = multer({
-    storage
+    storage:storage
 }).single('file')
 
 router.post('/', uploader, (req, res) => {
