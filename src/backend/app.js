@@ -13,7 +13,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/upload')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 //Modelos
 let userModel = require('./models/User');
@@ -54,6 +54,6 @@ app.use(function(err, req, res, next) {
 });
 
 //Static files
-
+console.log(___dirname);
 
 module.exports = app;
