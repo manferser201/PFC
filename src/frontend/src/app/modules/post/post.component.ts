@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class PostComponent {
   registerDishForm: FormGroup;
   apiRoot = 'https://pfc-production.up.railway.app';
-  // apiRootLocal = 'http://localhost:5000';
+  // apiRoot = 'http://localhost:5000';
   file: any;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
