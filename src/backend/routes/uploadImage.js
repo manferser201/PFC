@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const storage = require('../src/multer');
+const storage = require('../multer');
 const multer = require('multer');
 
 const uploader = multer({
