@@ -15,6 +15,12 @@ const upload = multer({storage});
 
 exports.upload = upload.single('file');
 
-exports.uploadFile = (req, res) => {
-    res.send({message: 'Imagen subida'})
+exports.uploadFile = (req, res, err) => {
+    
+    if(err){
+        res.json({message: err.message, error: err})
+    } else {
+        res.send({message: 'Imagen subida'})
+    }
+    
 }
