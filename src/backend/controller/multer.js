@@ -14,7 +14,7 @@ const upload = multer({storage: storage});
 
 exports.upload = upload.single('file');
 
-exports.uploadFile = (req, res, err) => {
+exports.uploadFile = (req, res) => {
     
     console.log('Entrando en el metodo');
     
