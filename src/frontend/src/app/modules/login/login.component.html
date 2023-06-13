@@ -1,29 +1,32 @@
-<div class="container">
-    <div id="formContent">
-        <div class="">
-            <img src="" alt="icono">
-        </div>
-
+<div class="container" id="container">
+    <div class="formContent">
         <form [formGroup]="loginForm" (ngSubmit)="login()">
-            <mat-form-field class="col-md-6" appearance="fill">
-                <mat-label>NOMBRE DE USUARIO</mat-label>
+            <h1>INICIO DE SESION</h1>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre de usuario</mat-label>
                 <input type="text" matInput id="username" formControlName="username" required>
-                <mat-icon matTextPrefix>person</mat-icon>
+                <mat-error *ngIf="loginForm.get('username')!.hasError('required')">Este campo es obligatorio</mat-error>
             </mat-form-field>
-            <br>
-            <mat-form-field class="col-md-6" appearance="fill">
-                <mat-label>CONTRASEÑA</mat-label>
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
                 <input [type]="hide ? 'password' : 'text'" matInput id="password" formControlName="password" required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-            </mat-form-field>
+                <mat-error *ngIf="loginForm.get('password')!.hasError('required')">Este campo es obligatorio</mat-error>
+            </mat-form-field>    
             
-            <app-button texto="Iniciar Sesión"></app-button>
+            <h3>¿Aún no te has registrado? <a (click)="register()">PULSE AQUÍ</a></h3>
+            <app-button texto="Iniciar Sesión" color="accent"></app-button>
         </form>
-
-        <div id="formFooter">
-            <h3>¿AÚN NO ESTÁS REGISTRADO? <a (click)="register()">PULSE AQUÍ</a></h3>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1>BIENVENIDO DE NUEVO</h1>
+                <p>Utiliza tu nombre de usuario y tu contraseña para poder acceder a la web</p>
+            </div>
         </div>
     </div>
 </div>

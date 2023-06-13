@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit{
     });
   }
 
+  ngOnInit() {}
+
   login() {
     this.http
       .post<any>(`${this.apiRoot}/login`, this.loginForm.value)
@@ -46,6 +48,6 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['/register']);
   }
 
-  ngOnInit() {}
+
 
 }
