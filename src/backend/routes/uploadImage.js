@@ -11,7 +11,7 @@ router.post('/upload', uploader, (req, res) => {
 
     if(req.body) {
         console.log("Entrando en el condicional");
-        
+        res.status(200).json({mensage: "Imagen subida con exito"});
     }
 });
 
