@@ -74,8 +74,12 @@ export class PostComponent {
         }.bind(this)
         
         // Sube la imagen al servidor
+        const form = new FormData();
+
+        form.append('file', file, 'form-data');
+
         this.http
-        .post(`${this.apiRoot}/images/upload`, file)
+        .post(`${this.apiRoot}/images/upload`, form)
         .subscribe((response) => {
           this.file = response;
         })
