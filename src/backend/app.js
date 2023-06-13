@@ -54,6 +54,6 @@ app.use(function(err, req, res, next) {
 });
 
 //Static files
-console.log(__dirname);
+console.log(__dirname, '../uploads');
 
 module.exports = app;
