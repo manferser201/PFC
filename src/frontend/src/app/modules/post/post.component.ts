@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { usersI } from './users.interface';
-
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -13,8 +11,8 @@ import { usersI } from './users.interface';
 
 export class PostComponent {
   registerDishForm: FormGroup;
-  // apiRoot = 'https://pfc-production.up.railway.app';
-  apiRoot = 'http://localhost:5000';
+  apiRoot = 'https://pfc-production.up.railway.app';
+  // apiRootLocal = 'http://localhost:5000';
   file: any;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
