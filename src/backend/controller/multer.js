@@ -12,3 +12,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 exports.upload = upload.single('file');
+
+exports.uploadFile = (req, res) => {
+    res.status(200).json({mensage: "Imagen subida con exito"});
+}
