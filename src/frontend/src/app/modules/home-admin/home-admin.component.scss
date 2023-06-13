@@ -1,6 +1,17 @@
+h1 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 table {
     text-align: center;
-
+    margin: 3%;
+    border-radius: 20px;
+    background-color: #c6c6c6;
+    
     .icon{
         color: red;
     }

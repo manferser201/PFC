@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+
 
 import { usersListI } from './usersList.interface';
 
@@ -12,6 +15,7 @@ import { usersListI } from './usersList.interface';
 
 export class HomeAdminComponent implements OnInit{
 
+  displayedColumns: string[] = ['username', 'name', 'surname', 'identification', 'email', 'delete'];
   users: usersListI[] = [];
   apiRoot = 'https://pfc-production.up.railway.app';
 

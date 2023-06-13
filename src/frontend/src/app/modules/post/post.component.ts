@@ -74,18 +74,8 @@ export class PostComponent {
         }.bind(this)
         
         // Sube la imagen al servidor
-        const options = {
-          headers: new HttpHeaders({
-            'conten-type': 'application/json'
-          }),
-          body: {
-            name: file.name,
-            file: file
-          }
-        }
-    
         this.http
-        .post(`${this.apiRoot}/images/upload`, options)
+        .post(`${this.apiRoot}/images/upload`, file)
         .subscribe((response) => {
           this.file = response;
         })
