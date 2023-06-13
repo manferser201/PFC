@@ -11,4 +11,10 @@ const storage = multer.diskStorage({
     }
 });
 
-module.exports = storage;
+const upload = multer({storage:storage});
+
+exports.upload = upload.single('file');
+
+exports.uploadFile = (req, res) => {
+    res.send({message: 'Imagen subida'})
+}
