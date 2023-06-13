@@ -17,6 +17,8 @@ exports.upload = upload.single('file');
 
 exports.uploadFile = (req, res, err) => {
     
+    console.log('Entrando en el metodo');
+    
     if(err){
         res.json({message: err.message, error: err})
     } else {
