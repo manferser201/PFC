@@ -5,10 +5,10 @@ const multer = require('multer');
 const controllerMulter = require('../controller/multer');
 
 const uploader = multer({
-    storage:storage
+    storage
 }).single('file')
 
-router.post('/', 
+router.post('/', uploader,
 
     controllerMulter.uploadFile
 );
