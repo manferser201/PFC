@@ -12,13 +12,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-exports.upload = upload.single('file');
+// exports.upload = upload.single('file');
 
-exports.uploadFile = (req, res) => {
+// exports.uploadFile = (req, res) => {
     
-    console.log('Entrando en el metodo');
+//     console.log('Entrando en el metodo');
 
-    res.send({message: 'Imagen subida'})
-}
+//     res.send({message: 'Imagen subida'})
+// }
 
 module.exports = storage;
