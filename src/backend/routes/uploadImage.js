@@ -8,18 +8,18 @@ const uploader = multer({
     storage
 }).single('file')
 
-router.post('/', uploader,
+router.post('/', uploader, 
 
     controllerMulter.uploadFile
 );
 
-// router.post('/upload', uploader, (req, res) => {
-//     console.log('Entrando en el método para hacer el upload de las imagenes');
+router.post('/upload', uploader, (req, res) => {
+    console.log('Entrando en el método para hacer el upload de las imagenes');
 
-//     if(req.body) {
-//         console.log("Entrando en el condicional");
-//         res.status(200).json({mensage: "Imagen subida con exito"});
-//     }
-// });
+    if(req.body) {
+        console.log("Entrando en el condicional");
+        res.status(200).json({mensage: "Imagen subida con exito"});
+    }
+});
 
 module.exports = router;
