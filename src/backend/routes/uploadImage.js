@@ -9,6 +9,7 @@ const uploader = multer({
 }).single('file')
 
 router.post('/', 
+    console.log('Entrando en el método para hacer el upload de las imagenes'),
     controller.upload,
     controller.uplooadFile
 );
