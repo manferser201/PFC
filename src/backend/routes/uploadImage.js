@@ -9,7 +9,7 @@ const uploader = multer({
 }).single('file')
 
 router.post('/', 
-    controllerMulter.upload,
+
     controllerMulter.uploadFile
 );
 
