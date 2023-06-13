@@ -13,7 +13,8 @@ import { usersI } from './users.interface';
 
 export class PostComponent {
   registerDishForm: FormGroup;
-  apiRoot = 'https://pfc-production.up.railway.app';
+  // apiRoot = 'https://pfc-production.up.railway.app';
+  apiRoot = 'http://localhost:5000';
   file: any;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
@@ -37,8 +38,8 @@ export class PostComponent {
   registerDish() {
 
     // Modificamos el valor por la nueva ruta obtenida del servidor
-    this.registerDishForm.value.photo = this.file.fileUrl;
-
+    this.registerDishForm.value.photo = this.file.fileName;
+    console.log('photo: ', this.registerDishForm.value.photo);
     // Mandamos los datos al servidor mediante el método post
     this.http
       .post<any>(`${this.apiRoot}/dishes`, this.registerDishForm.value)
@@ -76,12 +77,13 @@ export class PostComponent {
         // Sube la imagen al servidor
         const form = new FormData();
 
-        form.append('file', file, 'form-data');
+        form.append('file', file);
 
         this.http
         .post(`${this.apiRoot}/images/upload`, form)
         .subscribe((response) => {
           this.file = response;
+          console.log(response);
         })
       } else {
         console.error("THERE WAS AN ERROR")
