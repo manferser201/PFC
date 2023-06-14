@@ -82,8 +82,8 @@ router.delete('/', function(req, res) {
 
 /* Login usuario */
 router.post('/login', function(req, res, next) {
-  
   console.log('Entrando en el método de Login');
+  
   //Compruebe si el usuario existe
   User.findOne({ username: req.body.username }, function(err, user) {
     

@@ -93,7 +93,7 @@ export class PostComponent {
       .post<any>(`${this.apiRoot}/dishes`, this.registerDishForm.value)
       .subscribe((response) => {
         console.log(response);
-        // this.router.navigate(['/']);
+        this.router.navigate(['/']);
       }, (error) => {
         console.error(error)
       });
