@@ -7,13 +7,22 @@
                 <mat-card-content class="card-body">
                     <h2 class="card-title text-center mb-2 pt-2">{{ dish.name }}</h2>
                     <div class="card-text">
-                        <div>
-                            <small class="mx-1"><span class=""></span>{{ dish.ingredients }}</small>
-                            <small class="mx-1"><span class=""></span>{{ dish.num_dishes }}</small>
-                            <small class="mx-1"><span class=""></span>{{ dish.price }}€</small>
+                        <hr class="my-2">
+                        <div class="data">
+                            <div class="row">
+                                <h3><b>Ingredientes:</b> {{ dish.ingredients }}</h3>
+                            </div>
+                            <div class="row">
+                                <h3><b>Número de raciones disponibles:</b> {{ dish.num_dishes }}</h3>
+                            </div>
+                            <div class="row">
+                                <h3><b>Precio por ración:</b> {{ dish.price }}€</h3>
+                            </div>
                         </div>
-                        <hr class="my-1">
-                        <p>{{ dish.description }}</p>
+                        <hr class="my-2">
+                        <div class="row">
+                            <h3><b>Descripción:</b> {{ dish.description }}</h3>
+                        </div>
                     </div>
                 </mat-card-content>
                 <div class="botones text-center py-3">
