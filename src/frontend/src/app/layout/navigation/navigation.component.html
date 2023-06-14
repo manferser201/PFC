@@ -5,16 +5,16 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse d-flex">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center ms-auto">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-lg-0 align-items-center ms-auto">
           <li class="nav-item">
             <a class="nav-link" routerLink="/post">PUBLICAR PLATO</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/">PERFIL</a>
-          </li>
+          </li>  
+          <app-button (click) = "deleteSession()" texto ="CERRAR SESION" id="logout" class="noLogin"></app-button>
         </ul>
-        <app-button (click) = "deleteSession()" texto ="CERRAR SESION" id="logout" class="noLogin"></app-button>
       </div>
     </div>
   </nav>
