@@ -71,7 +71,7 @@
                     <mat-form-field class="col-md-3" appearance="fill">
                         <mat-label>FECHA DE NACIMIENTO</mat-label>
                         <input type="date" matInput formControlName="birthday" id="birthday"  required>
-                        <mat-icon matTextPrefix>calendar month</mat-icon>
+                        <mat-icon matTextPrefix>cake</mat-icon>
                     </mat-form-field>
                     <div *ngIf="registerForm.get('birthday')!.errors" class="invalid-feedback">
                         <mat-error *ngIf="registerForm.get('birthday')!.hasError('required')">Este campo es obligatorio</mat-error>
@@ -82,11 +82,9 @@
                         <mat-label>EMAIL</mat-label>
                         <input type="email" matInput formControlName="email" id="email"  required>
                         <mat-icon matTextPrefix>mail</mat-icon>
-                    </mat-form-field>
-                    <div *ngIf="registerForm.get('email')!.errors" class="invalid-feedback">
                         <mat-error *ngIf="registerForm.get('email')!.hasError('required')">Este campo es obligatorio</mat-error>
-                    </div>
-                    
+                    </mat-form-field>
+                   
                     <!-- NUMBER PHONE -->
                     <mat-form-field class="col-md-4" appearance="fill">
                         <mat-label>TELEFONO</mat-label>
@@ -109,11 +107,11 @@
                         <mat-label>BLOQUE</mat-label>
                         <input type="tel" matInput name="direccion" id="bloque">
                     </mat-form-field>
-                    <mat-form-field class="col-md-3" appearance="fill">
+                    <mat-form-field class="col-md-2" appearance="fill">
                         <mat-label>ESCALERA</mat-label>
                         <input type="tel" matInput name="direccion" id="escalera">
                     </mat-form-field>
-                    <mat-form-field class="col-md-1" appearance="fill">
+                    <mat-form-field class="col-md-2" appearance="fill">
                         <mat-label>PUERTA</mat-label>
                         <input type="tel" matInput name="direccion" id="puerta">
                     </mat-form-field>

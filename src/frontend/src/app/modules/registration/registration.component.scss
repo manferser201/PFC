@@ -1,18 +1,47 @@
+/*--------------------------------------------------
+Project: Ñam Ñam de Barrio
+Version: 1.0
+Last change: 14/06/2023
+Assignes to: Manuel Fernández Serrano
+
+[TABLA DE CONTENIDOS]
+
+1. Cabecera
+2. Form
+    2.1 Input
+    2.2 Fieldset
+    2.3 Legend
+    2.4 Payment method
+
+[CÓDIGOS DE COLOR]
+
+Color principal: #c6c6c6
+
+[FUENTES Y TIPOGRAFÍAS]
+
+General: 'Quicksand', sans-serif
+Cabeceras: 'Barlow Semi Condensed', sans-serif
+--------------------------------------------------*/
+
+/* 1. Cabecera */
 h1 {
     font-family: 'Barlow Semi Condensed', sans-serif;
-    font-size: 3em;
+    font-size: 2.5em;
     text-align: center;
     font-weight: bold;
     padding-bottom: 1%;
 }
 
+/* 2. Form */
 form {
     font-family: 'Quicksand', sans-serif;
 
+    // 2.1 Input
     input {
         padding-left: 1%;
     }
 
+    // 2.2 Fieldset
     fieldset {
         margin: 1%;
         background-color: #c6c6c6;
@@ -21,6 +50,7 @@ form {
         padding-bottom: 1%;
         padding-right: 2%;
 
+        //2.3 Legend
         legend {
             padding-bottom: 1%;
             font-family: 'Barlow Semi Condensed', sans-serif;
@@ -28,11 +58,12 @@ form {
         }
     }
 
+    //2.4 Payment method
     mat-tab-group {
         background-color: primary;
-    }
-
-    .tab-content {
-        padding-top: 1%;
+        
+        .tab-content {
+            padding-top: 1%;
+        }
     }
 }
