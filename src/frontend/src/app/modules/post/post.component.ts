@@ -14,7 +14,7 @@ export class PostComponent {
   apiRoot = 'https://pfc-production.up.railway.app';
   // apiRoot = 'http://localhost:5000';
   file: any;
-  // selectedFile: any = null;
+  image: any = "./assets/image/upload.png"
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerDishForm = this.fb.group({
@@ -34,16 +34,47 @@ export class PostComponent {
     
   }
 
-  // onFileSelected(event: any): void {
-  //   this.selectedFile = event.target.files[0] ?? null;
-
-  // }
-
   public GetFileOnLoad(event: any) {
-    var file = event.target.files[0];
-    var element = document.getElementById("fakeFileInput") as HTMLInputElement | null;
+    const file = event.target.files[0];
+    let element = document.getElementById("fakeFileInput") as HTMLInputElement | null;
     if(element != null) {
       element.value = file?.name;
+    }
+
+    if(event.target.files && event.target.files.length > 0) {
+      
+      const file= event.target.files[0];
+
+      console.log("archivo:", file);
+      
+      if (file.type.includes("image")) {
+        console.log("ENTRANDO EN EL IF PARA SUBIR LA IMAGEN")
+        
+        // Muestra la imagen cargada en el HTML
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        console.log("reader: ", reader);
+
+        reader.onload = function load(this: any) {
+          this.image = reader.result;
+        }.bind(this);
+        
+        // Sube la imagen al servidor
+        const form = new FormData();
+
+        form.append('file', file);
+
+        this.http
+        .post(`${this.apiRoot}/images/upload`, form)
+        .subscribe((response) => {
+          this.file = response;
+          console.log(response);
+        })
+      } else {
+        console.error("THERE WAS AN ERROR")
+      }
+
     }
   }
   
@@ -82,9 +113,11 @@ export class PostComponent {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
+        console.log("reader: ", reader);
+
         reader.onload = function load(this: any) {
-          
-        }.bind(this)
+          this.image = reader.result;
+        }.bind(this);
         
         // Sube la imagen al servidor
         const form = new FormData();

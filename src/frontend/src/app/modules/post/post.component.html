@@ -3,13 +3,18 @@
     <form [formGroup]="registerDishForm" novalidate>
         <div class="row">
             <div class="col-lg-6">
-                <mat-form-field> 
+                <div class="col-lg-7">
+                    <img *ngIf="image" class="img-fluid img-thumbnail" src="{{ image }}">
+                </div>
+                <mat-form-field class="col-lg-7"> 
                     <mat-label>Select file</mat-label>
                     <input matInput readonly type="text" id="fakeFileInput" (click)="hiddenInput.click()">
                     <input hidden type="file" accept="png" #hiddenInput (change)="GetFileOnLoad($event)">
                     <mat-icon matSuffix>folder_open</mat-icon>
-                 </mat-form-field>
+                    <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
+                </mat-form-field>
             </div>
+
             <div class="col-lg-6">
                 <div class="row">
                     <mat-form-field appearance="fill">
@@ -50,14 +55,11 @@
                         <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
+
                 <div class="row">
                     <mat-form-field appearance="fill" floatLabel="always">
                         <mat-label for="price">PRECIO</mat-label>
-                        <input type="number" matInput id="price" formControlName="price" placeholder="0" required>
+                        <input type="number" matInput id="price" formControlName="price" placeholder="0,00" required>
                         <span matTextSuffix>€</span>
                         <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
