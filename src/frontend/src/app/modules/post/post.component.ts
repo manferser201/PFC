@@ -84,7 +84,7 @@ export class PostComponent {
     console.log('photo: ', this.registerDishForm.value.photo);
     console.log("file: ", this.file)
 
-    this.registerDishForm.value.photo = this.file.fileName;
+    this.registerDishForm.value.photo = this.file.fileUrl;
     console.log('photo con los datos cambiados: ', this.registerDishForm.value.photo);
     console.log('datos formulario: ', this.registerDishForm.value);
 

@@ -3,17 +3,17 @@
     <div class="row mt-3">
         <div class="col-lg-4 mb-3" *ngFor="let dish of dishes">
             <mat-card class="card card h-100" >
-                <img mat-card-image [src]="'http://localhost:5000/uploads/' + dish.photo" alt="Imagen del plato" class="card-img-top">
+                <img mat-card-image [src]="'https://pfc-production.up.railway.app' + dish.photo" alt="Imagen del plato" class="card-img-top">
                 <mat-card-content class="card-body">
                     <h2 class="card-title text-center mb-2 pt-2">{{ dish.name }}</h2>
                     <div class="card-text">
                         <div>
-                            <small class="mx-1"><span class=""></span> dish.ingredients </small>
-                            <small class="mx-1"><span class=""></span> dish.num_dishes </small>
-                            <small class="mx-1"><span class=""></span>dish.price €</small>
+                            <small class="mx-1"><span class=""></span> {{dish.ingredients}} </small>
+                            <small class="mx-1"><span class=""></span> {{dish.num_dishes}} </small>
+                            <small class="mx-1"><span class=""></span>{{dish.price}} €</small>
                         </div>
                         <hr class="my-1">
-                        <p> dish.description </p>
+                        <p> {{dish.description}} </p>
                     </div>
                 </mat-card-content>
                 <div class="botones text-center py-3">
