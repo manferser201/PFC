@@ -3,7 +3,7 @@
     <div class="row mt-3">
         <div class="col-lg-4 mb-3" *ngFor="let dish of dishes">
             <mat-card class="card card h-100" >
-                <img mat-card-image src="{{ dish.photo }}" alt="Imagen del plato" class="card-img-top">
+                <img mat-card-image src="/assets/image/{{ dish.photo }}" alt="Imagen del plato" class="card-img-top">
                 <mat-card-content class="card-body">
                     <h2 class="card-title text-center mb-2 pt-2">{{ dish.name }}</h2>
                     <div class="card-text">

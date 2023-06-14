@@ -1,3 +1,50 @@
+/*--------------------------------------------------
+Project: Ñam Ñam de Barrio
+Version: 1.0
+Last change: 14/06/2023
+Assignes to: Manuel Fernández Serrano
+
+[TABLA DE CONTENIDOS]
+
+1. Cabecera
+2. Table
+
+[CÓDIGOS DE COLOR]
+
+Color principal: #c6c6c6
+
+[FUENTES Y TIPOGRAFÍAS]
+
+General: 'Quicksand', sans-serif
+Cabeceras: 'Barlow Semi Condensed', sans-serif
+--------------------------------------------------*/
+
+/* 1. Cabecera */
 h1 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 2.5em;
     text-align: center;
+    font-weight: bold;
+    padding-bottom: 1%;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+h2 {
+    font-family: 'Racing Sans One', cursive;
+    font-size: 1.75em;
+}
+
+.material-icons {
+    font-size: 1em;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    height: 45%;
 }
