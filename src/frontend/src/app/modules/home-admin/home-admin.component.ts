@@ -36,7 +36,6 @@ export class HomeAdminComponent implements OnInit, AfterViewInit{
       .subscribe((response) => {
         this.users = response;
         this.dataSource.data = this.users;
-        console.log("data source: ", this.dataSource.data);
       });
       
     } else {
@@ -61,8 +60,10 @@ export class HomeAdminComponent implements OnInit, AfterViewInit{
       this.http
       .delete<any>(this.apiRoot, options)
       .subscribe((response) => {
+        console.log(response);
         if(response.message == "Usuario eliminado con éxito"){
-          this.router.navigate(['/admin']);
+          console.log('entrando en el if para redirect')
+          location.reload();
         } else {
           alert("No se ha podido eliminar al usuario")
         }
