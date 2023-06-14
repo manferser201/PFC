@@ -2,57 +2,64 @@
     <h1>REGISTRO DE PLATOS</h1>
     <form [formGroup]="registerDishForm" novalidate>
         <div class="row">
-            
-            <div class="col-6 ">
-                <label for="photo" class="form-label">FOTO</label>
-                <input type="file" class="form-control" id="photo" formControlName="photo" (change)="urlFoto($event)" required>
+            <div class="col-lg-6">
+                <mat-form-field> 
+                    <mat-label>Select file</mat-label>
+                    <input matInput readonly type="text" id="fakeFileInput" (click)="hiddenInput.click()">
+                    <input hidden type="file" accept="png" #hiddenInput (change)="GetFileOnLoad($event)">
+                    <mat-icon matSuffix>folder_open</mat-icon>
+                 </mat-form-field>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6">
                 <div class="row">
                     <mat-form-field appearance="fill">
                         <mat-label for="inputEmail3">NOMBRE</mat-label>
                         <input type="text" matInput id="dishName" formControlName="name" required>
-                        <mat-icon matTextPrefix></mat-icon>
                         <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                 </div>
 
-
                 <div class="row">
                     <mat-form-field appearance="fill">
                         <mat-label for="num_dishes">Nº DE RACIONES</mat-label>
-                            <input type="number" matInput id="num_dishes" formControlName="num_dishes" required>
+                        <input type="number" matInput id="num_dishes" formControlName="num_dishes" required>
+                        <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="row">
                     <mat-form-field appearance="fill">
                         <mat-label for="adress">DIRECCION</mat-label>
-                            <input type="text" matInput id="adress" formControlName="adress" required>
+                        <input type="text" matInput id="adress" formControlName="adress" required>
+                        <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="row">
                     <mat-form-field appearance="fill">
                         <mat-label for="type">TIPO DE PLATO</mat-label>
-                            <input type="text" matInput id="type" formControlName="type" required>
+                        <input type="text" matInput id="type" formControlName="type" required>
+                        <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="row">
                     <mat-form-field appearance="fill">
                         <mat-label for="ingredients">INGREDIENTES</mat-label>
-                            <input type="text" matInput id="ingredients" formControlName="ingredients" required>
+                        <input type="text" matInput id="ingredients" formControlName="ingredients" required>
+                        <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-3">
+            <div class="col-lg-3">
                 <div class="row">
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="fill" floatLabel="always">
                         <mat-label for="price">PRECIO</mat-label>
-                            <input type="number" matInput id="price" formControlName="price" required>
+                        <input type="number" matInput id="price" formControlName="price" placeholder="0" required>
+                        <span matTextSuffix>€</span>
+                        <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -60,7 +67,7 @@
         <div class="row">
             <mat-form-field appearance="fill">
                 <mat-label for="description">DESCRIPCION DEL PLATO</mat-label>
-                <textarea matInput id="description" formControlName="description" rows="5"></textarea>
+                <textarea matInput id="description" formControlName="description" rows="3"></textarea>
             </mat-form-field>
         </div>
 

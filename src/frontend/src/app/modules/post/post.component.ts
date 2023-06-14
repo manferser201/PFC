@@ -14,6 +14,7 @@ export class PostComponent {
   apiRoot = 'https://pfc-production.up.railway.app';
   // apiRoot = 'http://localhost:5000';
   file: any;
+  // selectedFile: any = null;
 
   constructor(public fb:FormBuilder, private http: HttpClient, private router: Router) {
     this.registerDishForm = this.fb.group({
@@ -33,6 +34,19 @@ export class PostComponent {
     
   }
 
+  // onFileSelected(event: any): void {
+  //   this.selectedFile = event.target.files[0] ?? null;
+
+  // }
+
+  public GetFileOnLoad(event: any) {
+    var file = event.target.files[0];
+    var element = document.getElementById("fakeFileInput") as HTMLInputElement | null;
+    if(element != null) {
+      element.value = file?.name;
+    }
+  }
+  
   registerDish() {
 
     // Modificamos el valor por la nueva ruta obtenida del servidor
