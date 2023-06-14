@@ -8,7 +8,7 @@
 
 ## Breve descripción del proyecto
 
-Ñam Ñam de Barrio es una aplicación que permite a los usuarios que se encuentren registrados, poder comprar y vender platos de comida casera, precio acceso a la aplicación.
+Ñam Ñam de Barrio es una aplicación que permite a los usuarios que se encuentren registrados, poder comprar y vender platos de comida casera, previo acceso a la aplicación.
 
 ## Definir el objetivo de la aplicación
 
