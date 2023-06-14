@@ -19,6 +19,7 @@ app.use('/public', express.static(path.resolve('public')));
 //Modelos
 let userModel = require('../models/User');
 let dishModel = require('../models/Dish');
+let imageModel = require('../models/Image');
 
 //Rutas
 let usersRouter = require('../routes/users');
