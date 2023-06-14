@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'register', component: RegistrationComponent },
       { path: 'post', component: PostComponent },
       { path: 'admin', component: HomeAdminComponent }
+
     ]
   }
 ];

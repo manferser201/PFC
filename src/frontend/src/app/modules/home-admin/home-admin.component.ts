@@ -37,63 +37,11 @@ export class HomeAdminComponent implements OnInit, AfterViewInit{
         this.users = response;
         this.dataSource.data = this.users;
       });
-
-      if (screen.width < 1000){
-        this.dataTable_small();
-      } else {
-        this.dataTable();
-      }
       
     } else {
       this.router.navigate(['/login']);
       alert('Lo siento. Para acceder a esta página tienes que estar logueado con un usuario administrador')
     }
-  }
-
-  dataTable(){
-    let table = document.getElementById('dataTable');
-
-    const template =
-    `'<ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef>NOMBRE DE USUARO</th>
-      <td mat-cell *matCellDef="let element"> {{ element.username }} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
-      <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="surname">
-      <th mat-header-cell *matHeaderCellDef> APELLIDOS </th>
-      <td mat-cell *matCellDef="let element"> {{ element.surname }} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="identification">
-      <th mat-header-cell *matHeaderCellDef> DNI/NIE </th>
-      <td mat-cell *matCellDef="let element"> {{ element.identification }} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> CORREO ELECTRONICO </th>
-      <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef> ELIMINAR </th>
-      <td mat-cell *matCellDef="let element" (click)="deleteUser(element.username)"><mat-icon class="icon" fontIcon="close"></mat-icon></td>
-    </ng-container>'`;
-
-
-    document.getElementById('dataTable')!.innerHTML = template;
-  }
-
-  dataTable_small(){
-
   }
 
   deleteUser(usernameDelete: string) {
