@@ -8,14 +8,13 @@ Assignes to: Manuel Fernández Serrano
 
 1. Cabecera
 2. Form
-    2.1 Input
-    2.2 Fieldset
-    2.3 Legend
-    2.4 Payment method
+    2.1 Price
+    2.2 Dishes number
+    2.3 buttons
+    2.4 Input file
+    2.5 Image file
 
 [CÓDIGOS DE COLOR]
-
-Color principal: #c6c6c6
 
 [FUENTES Y TIPOGRAFÍAS]
 
@@ -23,6 +22,7 @@ General: 'Quicksand', sans-serif
 Cabeceras: 'Barlow Semi Condensed', sans-serif
 --------------------------------------------------*/
 
+/* Cabecera */
 h1 {
     font-family: 'Barlow Semi Condensed', sans-serif;
     font-size: 2.5em;
@@ -31,9 +31,11 @@ h1 {
     padding-bottom: 1%;
 }
 
+/* Form */
 form {
     font-family: 'Quicksand', sans-serif;
     
+    // Price
     input {
         &#price {
             text-align: right;
@@ -44,6 +46,7 @@ form {
             }
         }
         
+        // Dishes number
         &#num_dishes {
             -moz-appearance: textfield;
     
@@ -52,16 +55,20 @@ form {
             }
         }
     }
+
+    // Buttons
+    .botones {
+        text-align: center;
+    }
+
+    // Input file
+    .file-name {
+        margin-left: 1rem;
+    }
+    
+    // Image file
+    img {
+        min-width: 100%;
+    }
 }
 
-.botones {
-    text-align: center;
-}
-
-.file-name {
-    margin-left: 1rem; /* or whatever margin you require */
-}
-
-img {
-    min-width: 100%;
-}
