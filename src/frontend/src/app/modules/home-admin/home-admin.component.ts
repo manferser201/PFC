@@ -30,7 +30,7 @@ export class HomeAdminComponent implements OnInit, AfterViewInit{
   
   ngOnInit(): void {
     
-    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null){
+    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null && sessionStorage.getItem('rol') !== null && sessionStorage.getItem('rol') != 'sub'){
       this.http
       .get<any>(this.apiRoot)
       .subscribe((response) => {
@@ -40,6 +40,7 @@ export class HomeAdminComponent implements OnInit, AfterViewInit{
       
     } else {
       this.router.navigate(['/login']);
+      alert('Lo siento. Para acceder a esta página tienes que estar logueado con un usuario administrador')
     }
   }
 

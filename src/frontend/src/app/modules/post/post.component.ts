@@ -31,7 +31,12 @@ export class PostComponent {
   }
   
   ngOnInit(): void {
-    
+    if (sessionStorage.getItem('username') == null || sessionStorage.getItem('id') == null || sessionStorage.getItem('rol') == null || sessionStorage.getItem('rol') == 'admin'){
+      
+      this.router.navigate(['/login']);
+      alert('Lo siento. Para acceder a esta página tienes que estar logueado con un usuario normal');
+      
+    }
   }
 
   public GetFileOnLoad(event: any) {

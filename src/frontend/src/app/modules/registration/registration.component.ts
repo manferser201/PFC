@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss']
 })
 
-export class RegistrationComponent{
+export class RegistrationComponent implements OnInit{
 
   registerForm: FormGroup;
   apiRoot = 'https://pfc-production.up.railway.app';
@@ -26,6 +26,13 @@ export class RegistrationComponent{
       email: ['', [Validators.email, Validators.required]],
       
     });
+  }
+  ngOnInit(): void {
+    if (sessionStorage.getItem('rol') == 'admin'){
+      
+      this.router.navigate(['/login']);
+      alert('Lo siento. Para acceder a esta página tienes que estar logueado con un usuario normal');
+    }
   }
 
   register() {

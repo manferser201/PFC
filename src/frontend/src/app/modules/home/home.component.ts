@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit{
   
   ngOnInit(): void {
 
-    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null){
+    if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('id') !== null && sessionStorage.getItem('rol') !== null && sessionStorage.getItem('rol') != 'admin'){
       
       // // Obtenemos el listado de todos lo platos que existen
       // this.http
@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit{
       this.dishes.push(this.dish4);
 
     } else {
+      alert('Lo siento. Para acceder a esta página tienes que estar logueado con un usuario normal')
       this.router.navigate(['/login']);
     }
   }
