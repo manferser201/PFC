@@ -38,14 +38,6 @@ export class HomeComponent implements OnInit{
         this.dishes = response;
       });
 
-      // // Obtenemos el listado de todas las imágenes que existen
-      // this.http
-      // .get<any>(`${this.apiRoot}/images`)
-      // .subscribe((response) => {
-      //   console.log(response);
-      //   this.images = response;
-      // });
-
       // this.dishes.push(this.dish1);
       // this.dishes.push(this.dish2);
       // this.dishes.push(this.dish3);
