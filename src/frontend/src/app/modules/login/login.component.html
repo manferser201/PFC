@@ -1,14 +1,16 @@
-<div class="container" id="container">
-    <div class="formContent">
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
-            <h1>INICIO DE SESION</h1>
-            
-            <mat-form-field appearance="fill">
-                <mat-label>Nombre de usuario</mat-label>
-                <input type="text" matInput id="username" formControlName="username" required>
+<div class="container justify-content-center align-items-center" id="container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <h1>INICIO DE SESION</h1>
+        
+        <div class="row">
+            <mat-form-field appearance="fill" class="col-md-6">
+            <mat-label>Nombre de usuario</mat-label>
+            <input type="text" matInput id="username" formControlName="username" required>
                 <mat-error *ngIf="loginForm.get('username')!.hasError('required')">Este campo es obligatorio</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+        </div>
+        <div class="row">
+            <mat-form-field appearance="fill" class="col-md-6">
                 <mat-label>Contraseña</mat-label>
                 <input [type]="hide ? 'password' : 'text'" matInput id="password" formControlName="password" required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -16,17 +18,9 @@
                 </button>
                 <mat-error *ngIf="loginForm.get('password')!.hasError('required')">Este campo es obligatorio</mat-error>
             </mat-form-field>    
-            
-            <h3>¿Aún no te has registrado? <a (click)="register()">PULSE AQUÍ</a></h3>
-            <app-button texto="Iniciar Sesión" color="accent"></app-button>
-        </form>
-    </div>
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-right">
-                <h1>BIENVENIDO DE NUEVO</h1>
-                <p>Utiliza tu nombre de usuario y tu contraseña para poder acceder a la web</p>
-            </div>
         </div>
-    </div>
+        
+        <h3>¿Aún no te has registrado? <a (click)="register()">PULSE AQUÍ</a></h3>
+        <app-button texto="Iniciar Sesión" color="accent"></app-button>
+    </form>
 </div>

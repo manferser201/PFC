@@ -37,3 +37,28 @@ table {
         color: red;
     }
 }
+
+@media only screen and (min-width: 375px) and (max-width: 1000px) and (orientation: portrait){
+    
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .article{
+        grid-column: 1 / 3;
+        grid-row: 3;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        grid-column: 1 / 3;
+        grid-row: 4;
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer{
+        grid-row: 5;
+    }
+}
