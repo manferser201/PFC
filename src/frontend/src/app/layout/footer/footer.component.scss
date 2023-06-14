@@ -1,11 +1,12 @@
 footer {
-    position: fixed;
     background-color: #0CAF88;
     text-align: center;
     color: white;
     padding: 0.5%;
     width: 100%;
-    bottom: 0;
+    left: 0;
+    height: 10%;
+    // position: fixed;
 
     a {
         text-decoration: none;
