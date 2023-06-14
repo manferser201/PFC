@@ -9,7 +9,7 @@
                 <mat-form-field class="col-lg-7"> 
                     <mat-label>Select file</mat-label>
                     <input matInput readonly type="text" id="fakeFileInput" (click)="hiddenInput.click()">
-                    <input hidden type="file" accept="png" #hiddenInput (change)="GetFileOnLoad($event)">
+                    <input hidden type="file" accept="png" #hiddenInput (change)="GetFileOnLoad($event)" formControlName="photo">
                     <mat-icon matSuffix>folder_open</mat-icon>
                     <mat-error *ngIf="registerDishForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
                 </mat-form-field>

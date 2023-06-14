@@ -59,8 +59,6 @@ export class PostComponent {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
-        console.log("reader: ", reader);
-
         reader.onload = function load(this: any) {
           this.image = reader.result;
         }.bind(this);
@@ -74,7 +72,6 @@ export class PostComponent {
         .post(`${this.apiRoot}/images/upload`, form)
         .subscribe((response) => {
           this.file = response;
-          console.log(response);
         })
       } else {
         console.error("THERE WAS AN ERROR")
@@ -84,16 +81,19 @@ export class PostComponent {
   }
   
   registerDish() {
-
-    // Modificamos el valor por la nueva ruta obtenida del servidor
-    this.registerDishForm.value.photo = this.file.fileName;
     console.log('photo: ', this.registerDishForm.value.photo);
+    console.log("file: ", this.file)
+
+    this.registerDishForm.value.photo = this.file.fileName;
+    console.log('photo con los datos cambiados: ', this.registerDishForm.value.photo);
+    console.log('datos formulario: ', this.registerDishForm.value);
+
     // Mandamos los datos al servidor mediante el método post
     this.http
       .post<any>(`${this.apiRoot}/dishes`, this.registerDishForm.value)
       .subscribe((response) => {
         console.log(response);
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
       }, (error) => {
         console.error(error)
       });
@@ -102,44 +102,4 @@ export class PostComponent {
   onReset(){
 
   }
-
-  urlFoto(event: any) {
-    
-    if(event.target.files && event.target.files.length > 0) {
-      
-      const file= event.target.files[0];
-
-      console.log("archivo:", file);
-      
-      if (file.type.includes("image")) {
-        console.log("ENTRANDO EN EL IF PARA SUBIR LA IMAGEN")
-        
-        // Muestra la imagen cargada en el HTML
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        console.log("reader: ", reader);
-
-        reader.onload = function load(this: any) {
-          this.image = reader.result;
-        }.bind(this);
-        
-        // Sube la imagen al servidor
-        const form = new FormData();
-
-        form.append('file', file);
-
-        this.http
-        .post(`${this.apiRoot}/images/upload`, form)
-        .subscribe((response) => {
-          this.file = response;
-          console.log(response);
-        })
-      } else {
-        console.error("THERE WAS AN ERROR")
-      }
-
-    }
-  }
-
 }

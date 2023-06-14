@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.scss']
 })
 
-export class NavigationComponent {
+export class NavigationComponent implements OnInit{
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+
+    if (sessionStorage.getItem('username') !== null) {
+      const logout = document.getElementById('logout');
+      console.log('logout:', logout);
+      logout?.classList.remove('noLogin');
+    }
+  }
 
   deleteSession() {
     sessionStorage.clear();

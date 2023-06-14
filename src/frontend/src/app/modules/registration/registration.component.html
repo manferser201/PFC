@@ -29,13 +29,13 @@
                     
                     <mat-form-field class="col-md-6" appearance="fill">
                         <mat-label>REPETIR CONTRASEÑA</mat-label>
-                        <input [type]="hide ? 'password' : 'text'" matInput id="repeatPass" required>
+                        <input [type]="hide ? 'password' : 'text'" formControlName="repeatPass" matInput id="repeatPass" required>
                         <mat-icon matTextPrefix>lock</mat-icon>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
-                        <mat-error *ngIf="registerForm.get('password')!.hasError('required')">Este campo es obligatorio</mat-error>
-                        <mat-error *ngIf="registerForm.get('password')!.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</mat-error>
+                        <mat-error *ngIf="registerForm.get('repeatPass')!.hasError('required')">Este campo es obligatorio</mat-error>
+                        <mat-error *ngIf="registerForm.get('repeatPass')!.hasError('samePass')">Las contraseñas deben ser iguales</mat-error>
                     </mat-form-field>
                 </div>
             </fieldset>
@@ -61,9 +61,10 @@
                     <!-- IDENTIFICATION -->
                     <mat-form-field class="col-md-3" appearance="fill">
                         <mat-label>DNI/NIE</mat-label>
-                        <input type="text" matInput formControlName="identification" id="identification"  required>
+                        <input type="text" matInput formControlName="identification" id="identification" (blur)="identificationValidator()" required>
                         <mat-icon matTextPrefix>badge</mat-icon>
                         <mat-error *ngIf="registerForm.get('identification')!.hasError('required')">Este campo es obligatorio</mat-error>
+                        <!-- <mat-error *ngIf="registerForm.get('identification')!.hasError('identificationValidator = false')">Este campo es obligatorio</mat-error> -->
                     </mat-form-field>
                 </div>
                 <div class="row">
@@ -208,7 +209,7 @@
 
             <div class="text-center mt-2">
                 <button mat-raised-button color="primary" type="submit" class="my-2 rojo" texto="Enviar" id="enviar" [disabled]="registerForm.invalid">Enviar</button>
-                <app-button mat-raised-button color="accent" id="reset" type="reset" class="mx-2" texto="Reset"></app-button>
+                <app-button mat-raised-button color="accent" id="reset" class="mx-2" texto="Reset" tipo="reset"></app-button>
             </div>
     </form>
 </div>

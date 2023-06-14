@@ -1,20 +1,16 @@
 const multer = require('multer');
 const path = require('path');
+const Image = require('./models/Image')
+const { uuid } = require('uuidv4');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, 'public'));
+        cb(null, path.join(__dirname, 'uploads'));
     },
     filename: (req, file, cb) => {
-        console.log('file',file);
-        cb(null, `${Date.now()}-${file.originalname}`);
+        console.log(uuid());
+        cb(null, uuid() + path.extname(file.originalname));
     }
 });
 
-const upload = multer({storage:storage});
-
-exports.Upload = [upload.single('file'), ]
-
-exports.uploadFile = (req, res) => {
-    res.status(200).json({message: 'Upload hecho', fileName: this.Upload.filename})
-}
+module.exports = storage;

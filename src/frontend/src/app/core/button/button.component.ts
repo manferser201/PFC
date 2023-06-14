@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() texto: string = '';
   @Input() color: string = '';
+  @Input() tipo: string = '';
 }

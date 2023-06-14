@@ -1,25 +1,34 @@
 const router = require('express').Router();
 const storage = require('../multer');
 const multer = require('multer');
-
 const controllerMulter = require('../multer')
+
+const Image = require('../models/Image');
 
 const uploader = multer({
     storage
 }).single('file')
 
-// router.post('/upload', uploader, (req, res) => {
-//     console.log('Entrando en el método para hacer el upload de las imagenes');
+router.post('/upload', uploader, async (req, res) => {
+    console.log('Entrando en el método para hacer el upload de las imagenes');
     
-//     if(req.body) {
-//         console.log("Entrando en el condicional");
-//         res.status(200).json({mensage: "Imagen subida con exito", fileName: uploader.filename});
-//     }
-// });
+    const { body } = req;
+    console.log("body", req.file);
+    if(req.body) {
+        // const newImage = new Image ({
+        //     fileName: req.file.originalname,
+        //     fileUrl: `${Date.now()}-${req.file.originalname}`
+        // })
+        
+        // await newImage.save()
+        console.log('url:', req.file.path)
+        res.status(200).json({message: 'Todo correcto', fileUrl: `${req.file.path}`});
+    }
+});
 
-router.post('/upload',
-    controllerMulter.Upload,
-    controllerMulter.uploadFile
-)
+router.get('/download', async (req, res) => {
+    const images = await Image.find();
+    res.json(images);
+})
 
 module.exports = router;

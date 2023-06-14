@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,14 +19,38 @@ export class RegistrationComponent implements OnInit{
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.minLength(8), Validators.required]],
+      repeatPass: ['', Validators.required],
       name: ['', Validators.required],
       surname: ['', Validators.required],
       identification: ['', Validators.required],
       birthday: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
       
+    }, {
+      Validators: this.samePass('passwrod', 'repeatPass')
     });
   }
+
+  samePass(password: string, repeatPass: string) {
+
+    return (formGroup: FormGroup) => {
+      
+      const passwordControl = formGroup.controls[password];
+      const repeatPassControl = formGroup.controls[repeatPass];
+
+      if (repeatPassControl.errors && repeatPassControl.errors['samePass']) {
+        return
+      }
+
+      if (passwordControl?.value !== repeatPassControl?.value) {
+          repeatPassControl?.setErrors({samePass: true});
+      } else {
+
+        repeatPassControl?.setErrors(null);
+      }
+    }
+  }
+
   ngOnInit(): void {
     if (sessionStorage.getItem('rol') == 'admin'){
       
@@ -34,6 +58,9 @@ export class RegistrationComponent implements OnInit{
       alert('Lo siento. Para acceder a esta página tienes que estar logueado con un usuario normal');
     }
   }
+
+
+
 
   register() {
 
@@ -47,10 +74,9 @@ export class RegistrationComponent implements OnInit{
       });
   }
 
+  identificationValidator(){
 
-  identificationValidator(identification: string){
-
-  console.info("Entrando en el método validarDniNie() con el parámetro: ", identification);
+    const identification = this.registerForm.value.identification;
 
     const letters = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
 
@@ -68,19 +94,20 @@ export class RegistrationComponent implements OnInit{
 
         console.error("El usuario no ha introducido un documento de identificación válido");
         alert("NO HA INTRODUCIDO NINGÚN DOCUMENTO DE IDENTIFICACIÓN VÁLIDO");
+        return false;
     }
   }
 
-  DNIvalidatro(identification: any, letters: any) {
-    console.info(`Entrando en el método comprobarDNI() con los parámetros: ${identification} y ${letters}`);
+  DNIvalidatro(dni: any, letters: any) {
+    console.info(`Entrando en el método comprobarDNI() con los parámetros: ${dni} y ${letters}`);
 
-    if( !(/^\d{8}[A-Z]$/.test(identification)) ) {
+    if( !(/^\d{8}[A-Z]$/.test(dni)) ) {
         
         console.info("Saliendo del método comprobarDNI() con el resultado: ", false);
 
         return false;
 
-    } else if(identification.charAt(identification.length - 1) != letters[(identification.substring(0, 8))%23]) {
+    } else if(dni.charAt(dni.length - 1) != letters[(dni.substring(0, 8))%23]) {
         
         console.info("Saliendo del método comprobarDNI() con el resultado: ", false);
 
@@ -94,8 +121,69 @@ export class RegistrationComponent implements OnInit{
     }
   }
 
-  NIEvalidator(identification: any, letters: any) {
+  /**
+   * Transforma la primera letra del NIE por los valores numéricos 1,2 o 3
+   * 
+   * @param {String} nie
+   * @returns {Boolean}
+   */
+  NIEvalidator(nie: any, letters: any){
     
+    console.info(`Entrando en el método comprobarNIE() con los parámetro: ${nie} y ${letters}`);
+    
+    let nieSinLetra = this.removeLetters(nie);
+
+    if(!(/^[XYZ]\d{7}[A-Z]$/.test(nie))){
+        
+        console.info("Saliendo del método comprobarNIE() con el resultado: ", false);
+
+        return false;
+    
+    } else if(nie.charAt(8) != letters[(nieSinLetra.substring(0, 8))%23]){
+        
+        console.info("Saliendo del método comprobarNIE() con el resultado: ", false);
+
+        return false;
+    
+    } else {
+        
+        console.info("Saliendo del método comprobarNIE() con el resultado: ", true);
+
+        return true;
+    }
+  }
+
+  /**
+   * Transforma la primera letra del NIE por los valores numéricos 1,2 o 3
+   * 
+   * @param {String} nie 
+   * @returns {String}
+   */
+  removeLetters(nie: any){
+      
+      console.info("Entrando en el método transformarLetra() con el parámetro: ", nie);
+
+      if(nie.charAt(0) == "X"){
+
+          let nieSinLetra = nie.replace("X", 0);
+          console.info("Saliendo del método transformarLetra() con el resultado: ", nieSinLetra);
+
+          return nieSinLetra;
+
+      } else if(nie.charAt(0) == "Y"){
+
+          let nieSinLetra = nie.replace("Y", 1);
+          console.info("Saliendo del método transformarLetra() con el resultado: ", nieSinLetra);
+
+          return nieSinLetra;
+
+      } else {
+
+          let nieSinLetra = nie.replace("Z", 2);
+          console.info("Saliendo del método transformarLetra() con el resultado: ", nieSinLetra);
+
+          return nieSinLetra;
+      }
   }
 
 }

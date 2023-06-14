@@ -13,7 +13,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../uploads')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.resolve('uploads')));
 
 //Modelos
 let userModel = require('../models/User');
@@ -54,7 +55,7 @@ app.use(function(err, req, res, next) {
 });
 
 //Static files
-console.log(path.join(__dirname, '../uploads'));
+console.log(path.join(__dirname, '../public/image'));
 console.log(__dirname);
 
 module.exports = app;
