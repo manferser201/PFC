@@ -43,163 +43,169 @@
             <fieldset class="row g-3">
                 <legend>Datos personales</legend>
 
-                <!-- NAME -->
-                <mat-form-field class="col-md-4" appearance="fill">
-                    <mat-label>NOMBRE</mat-label>
-                    <input type="text" matInput formControlName="name" id="name" required>
-                    <mat-error *ngIf="registerForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
-                </mat-form-field>
-
-                <!-- SURNAME -->
-                <mat-form-field class="col-md-5" appearance="fill">
-                    <mat-label>APELLIDOS</mat-label>
-                    <input type="text" matInput formControlName="surname" id="surname" required>
-                    <mat-error *ngIf="registerForm.get('surname')!.hasError('required')">Este campo es obligatorio</mat-error>
-                </mat-form-field>
-                
-                <!-- IDENTIFICATION -->
-                <mat-form-field class="col-md-3" appearance="fill">
-                    <mat-label>DNI/NIE</mat-label>
-                    <input type="text" matInput formControlName="identification" id="identification"  required>
-                    <mat-icon matTextPrefix>badge</mat-icon>
-                    <mat-error *ngIf="registerForm.get('identification')!.hasError('required')">Este campo es obligatorio</mat-error>
-                </mat-form-field>
+                <div class="row">
+                    <!-- NAME -->
+                    <mat-form-field class="col-md-4" appearance="fill">
+                        <mat-label>NOMBRE</mat-label>
+                        <input type="text" matInput formControlName="name" id="name" required>
+                        <mat-error *ngIf="registerForm.get('name')!.hasError('required')">Este campo es obligatorio</mat-error>
+                    </mat-form-field>
     
-                <!-- BIRTHDYA -->
-                <mat-form-field class="col-md-3" appearance="fill">
-                    <mat-label>FECHA DE NACIMIENTO</mat-label>
-                    <input type="date" matInput formControlName="birthday" id="birthday"  required>
-                    <mat-icon matTextPrefix>calendar month</mat-icon>
-                </mat-form-field>
-                <div *ngIf="registerForm.get('birthday')!.errors" class="invalid-feedback">
-                    <mat-error *ngIf="registerForm.get('birthday')!.hasError('required')">Este campo es obligatorio</mat-error>
+                    <!-- SURNAME -->
+                    <mat-form-field class="col-md-5" appearance="fill">
+                        <mat-label>APELLIDOS</mat-label>
+                        <input type="text" matInput formControlName="surname" id="surname" required>
+                        <mat-error *ngIf="registerForm.get('surname')!.hasError('required')">Este campo es obligatorio</mat-error>
+                    </mat-form-field>
+                    
+                    <!-- IDENTIFICATION -->
+                    <mat-form-field class="col-md-3" appearance="fill">
+                        <mat-label>DNI/NIE</mat-label>
+                        <input type="text" matInput formControlName="identification" id="identification"  required>
+                        <mat-icon matTextPrefix>badge</mat-icon>
+                        <mat-error *ngIf="registerForm.get('identification')!.hasError('required')">Este campo es obligatorio</mat-error>
+                    </mat-form-field>
                 </div>
-                
-                <!-- EMAIL -->
-                <mat-form-field class="col-md-5" appearance="fill">
-                    <mat-label>EMAIL</mat-label>
-                    <input type="email" matInput formControlName="email" id="email"  required>
-                    <mat-icon matTextPrefix>mail</mat-icon>
-                </mat-form-field>
-                <div *ngIf="registerForm.get('email')!.errors" class="invalid-feedback">
-                    <mat-error *ngIf="registerForm.get('email')!.hasError('required')">Este campo es obligatorio</mat-error>
+                <div class="row">
+                    <!-- BIRTHDYA -->
+                    <mat-form-field class="col-md-3" appearance="fill">
+                        <mat-label>FECHA DE NACIMIENTO</mat-label>
+                        <input type="date" matInput formControlName="birthday" id="birthday"  required>
+                        <mat-icon matTextPrefix>calendar month</mat-icon>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.get('birthday')!.errors" class="invalid-feedback">
+                        <mat-error *ngIf="registerForm.get('birthday')!.hasError('required')">Este campo es obligatorio</mat-error>
+                    </div>
+                    
+                    <!-- EMAIL -->
+                    <mat-form-field class="col-md-5" appearance="fill">
+                        <mat-label>EMAIL</mat-label>
+                        <input type="email" matInput formControlName="email" id="email"  required>
+                        <mat-icon matTextPrefix>mail</mat-icon>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.get('email')!.errors" class="invalid-feedback">
+                        <mat-error *ngIf="registerForm.get('email')!.hasError('required')">Este campo es obligatorio</mat-error>
+                    </div>
+                    
+                    <!-- NUMBER PHONE -->
+                    <mat-form-field class="col-md-4" appearance="fill">
+                        <mat-label>TELEFONO</mat-label>
+                        <input type="tel" matInput name="phone_number" id="phone_number">
+                        <mat-icon matTextPrefix>call</mat-icon>
+                    </mat-form-field>   
                 </div>
-                
-                <!-- NUMBER PHONE -->
-                <mat-form-field class="col-md-4" appearance="fill">
-                    <mat-label>TELEFONO</mat-label>
-                    <input type="tel" matInput name="phone_number" id="phone_number">
-                    <mat-icon matTextPrefix>call</mat-icon>
-                </mat-form-field>
-
-                <!-- HOME ADDRESS -->
-                <mat-form-field class="col-md-4" appearance="fill">
-                    <mat-label>CALLE</mat-label>
-                    <input type="tel" matInput name="direccion" id="calle">
-                    <mat-icon matTextPrefix>house</mat-icon>
-                </mat-form-field>
-                <mat-form-field class="col-md-1" appearance="fill">
-                    <mat-label>Nº</mat-label>
-                    <input type="tel" matInput name="direccion" id="number">
-                </mat-form-field>
-                <mat-form-field class="col-md-2" appearance="fill">
-                    <mat-label>BLOQUE</mat-label>
-                    <input type="tel" matInput name="direccion" id="bloque">
-                </mat-form-field>
-                <mat-form-field class="col-md-3" appearance="fill">
-                    <mat-label>ESCALERA</mat-label>
-                    <input type="tel" matInput name="direccion" id="escalera">
-                </mat-form-field>
-                <mat-form-field class="col-md-1" appearance="fill">
-                    <mat-label>PUERTA</mat-label>
-                    <input type="tel" matInput name="direccion" id="puerta">
-                </mat-form-field>
-                <mat-form-field class="col-md-1" appearance="fill">
-                    <mat-label>LETRA</mat-label>
-                    <input type="tel" matInput name="direccion" id="letra">
-                </mat-form-field>
+                <div class="row">
+                    <!-- HOME ADDRESS -->
+                    <mat-form-field class="col-md-4" appearance="fill">
+                        <mat-label>CALLE</mat-label>
+                        <input type="tel" matInput name="direccion" id="calle">
+                        <mat-icon matTextPrefix>house</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="col-md-1" appearance="fill">
+                        <mat-label>Nº</mat-label>
+                        <input type="tel" matInput name="direccion" id="number">
+                    </mat-form-field>
+                    <mat-form-field class="col-md-2" appearance="fill">
+                        <mat-label>BLOQUE</mat-label>
+                        <input type="tel" matInput name="direccion" id="bloque">
+                    </mat-form-field>
+                    <mat-form-field class="col-md-3" appearance="fill">
+                        <mat-label>ESCALERA</mat-label>
+                        <input type="tel" matInput name="direccion" id="escalera">
+                    </mat-form-field>
+                    <mat-form-field class="col-md-1" appearance="fill">
+                        <mat-label>PUERTA</mat-label>
+                        <input type="tel" matInput name="direccion" id="puerta">
+                    </mat-form-field>
+                    <mat-form-field class="col-md-1" appearance="fill">
+                        <mat-label>LETRA</mat-label>
+                        <input type="tel" matInput name="direccion" id="letra">
+                    </mat-form-field>                    
+                </div>    
             </fieldset>
 
-            <fieldset>
+            <fieldset class="row g-3">
                 <legend>Datos de pago</legend>
+                
+                <div class="row">
+                    <mat-tab-group>
+                        <!-- CREDIT CARD -->
+                        <mat-tab id="creditCard"> 
+                            <ng-template mat-tab-label>
+                                <mat-icon>credit card</mat-icon>
+                                Tarjeta de crédito
+                            </ng-template>
+                            <div class="container-fluid tab-content">
+                                <div class="row">
+                                    <mat-form-field class="col-md-6" appearance="fill">
+                                        <mat-label for="cardNumber">Número de tarjeta </mat-label>    
+                                        <input type="text" matInput name="cardNumber" id="cardNumber">
+                                    </mat-form-field>
     
-                <mat-tab-group>
-                    <!-- CREDIT CARD -->
-                    <mat-tab id="creditCard"> 
-                        <ng-template mat-tab-label>
-                            <mat-icon>credit card</mat-icon>
-                            Tarjeta de crédito
-                        </ng-template>
-                        <div class="container-fluid tab-content">
-                            <div class="row">
-                                <mat-form-field class="col-md-6" appearance="fill">
-                                    <mat-label for="cardNumber">Número de tarjeta </mat-label>    
-                                    <input type="text" matInput name="cardNumber" id="cardNumber">
-                                </mat-form-field>
-
-                                <mat-form-field class="col-md-3" appearance="fill">
-                                    <mat-label for="cardNumber">Fecha de caducidad</mat-label>     
-                                    <input type="date" matInput name="cardNumber" id="cardNumber">
-                                </mat-form-field>
-
-                                <mat-form-field class="col-md-3" appearance="fill">
-                                    <mat-label for="csv">CSV</mat-label>     
-                                    <input type="number" matInput name="csv" id="csv">
-                                </mat-form-field>
+                                    <mat-form-field class="col-md-3" appearance="fill">
+                                        <mat-label for="cardNumber">Fecha de caducidad</mat-label>     
+                                        <input type="date" matInput name="cardNumber" id="cardNumber">
+                                    </mat-form-field>
+    
+                                    <mat-form-field class="col-md-3" appearance="fill">
+                                        <mat-label for="csv">CSV</mat-label>     
+                                        <input type="number" matInput name="csv" id="csv">
+                                    </mat-form-field>
+                                </div>
                             </div>
-                        </div>
-                    </mat-tab>
-
-                    <!-- BIZUM -->
-                    <mat-tab id="bizum">
-                        <ng-template mat-tab-label>
-                            Bizum
-                        </ng-template>
-                        <div class="container-fluid tab-content">
-                            <div class="row">
-                                <mat-form-field class="col-md-6" appearance="fill">
-                                    <mat-label for="cardNumber">Número de tarjeta </mat-label>    
-                                    <input type="text" matInput name="cardNumber" id="cardNumber">
-                                </mat-form-field>
-
-                                <mat-form-field class="col-md-3" appearance="fill">
-                                    <mat-label for="cardNumber">Fecha de caducidad</mat-label>     
-                                    <input type="date" matInput name="cardNumber" id="cardNumber">
-                                </mat-form-field>
-
-                                <mat-form-field class="col-md-3" appearance="fill">
-                                    <mat-label for="csv">CSV</mat-label>     
-                                    <input type="number" matInput name="csv" id="csv">
-                                </mat-form-field>
+                        </mat-tab>
+    
+                        <!-- BIZUM -->
+                        <mat-tab id="bizum">
+                            <ng-template mat-tab-label>
+                                Bizum
+                            </ng-template>
+                            <div class="container-fluid tab-content">
+                                <div class="row">
+                                    <mat-form-field class="col-md-6" appearance="fill">
+                                        <mat-label for="cardNumber">Número de tarjeta </mat-label>    
+                                        <input type="text" matInput name="cardNumber" id="cardNumber">
+                                    </mat-form-field>
+    
+                                    <mat-form-field class="col-md-3" appearance="fill">
+                                        <mat-label for="cardNumber">Fecha de caducidad</mat-label>     
+                                        <input type="date" matInput name="cardNumber" id="cardNumber">
+                                    </mat-form-field>
+    
+                                    <mat-form-field class="col-md-3" appearance="fill">
+                                        <mat-label for="csv">CSV</mat-label>     
+                                        <input type="number" matInput name="csv" id="csv">
+                                    </mat-form-field>
+                                </div>
                             </div>
-                        </div>
-                    </mat-tab>
-
-                    <!-- PAYPAL -->
-                    <mat-tab id="paypal"> 
-                        <ng-template mat-tab-label>
-                            PayPal
-                        </ng-template>
-                        <div class="container-fluid tab-content">
-                            <div class="row">
-                                <mat-form-field class="col-md-6" appearance="fill">
-                                    <mat-label for="cardNumber">Número de tarjeta </mat-label>    
-                                    <input type="text" matInput name="cardNumber" id="cardNumber">
-                                </mat-form-field>
-
-                                <mat-form-field class="col-md-3" appearance="fill">
-                                    <mat-label for="cardNumber">Fecha de caducidad</mat-label>     
-                                    <input type="date" matInput name="cardNumber" id="cardNumber">
-                                </mat-form-field>
-
-                                <mat-form-field class="col-md-3" appearance="fill">
-                                    <mat-label for="csv">CSV</mat-label>     
-                                    <input type="number" matInput name="csv" id="csv">
-                                </mat-form-field>
+                        </mat-tab>
+    
+                        <!-- PAYPAL -->
+                        <mat-tab id="paypal"> 
+                            <ng-template mat-tab-label>
+                                PayPal
+                            </ng-template>
+                            <div class="container-fluid tab-content">
+                                <div class="row">
+                                    <mat-form-field class="col-md-6" appearance="fill">
+                                        <mat-label for="cardNumber">Número de tarjeta </mat-label>    
+                                        <input type="text" matInput name="cardNumber" id="cardNumber">
+                                    </mat-form-field>
+    
+                                    <mat-form-field class="col-md-3" appearance="fill">
+                                        <mat-label for="cardNumber">Fecha de caducidad</mat-label>     
+                                        <input type="date" matInput name="cardNumber" id="cardNumber">
+                                    </mat-form-field>
+    
+                                    <mat-form-field class="col-md-3" appearance="fill">
+                                        <mat-label for="csv">CSV</mat-label>     
+                                        <input type="number" matInput name="csv" id="csv">
+                                    </mat-form-field>
+                                </div>
                             </div>
-                        </div>
-                    </mat-tab>
-                  </mat-tab-group>
+                        </mat-tab>
+                      </mat-tab-group>
+                </div>
             </fieldset>
 
             <div class="text-center mt-2">
